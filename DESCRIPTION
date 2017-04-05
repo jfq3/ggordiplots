@@ -1,0 +1,19 @@
+Package: ggordiplots
+Type: Package
+Title: Make ggplot Versions of Vegan's Ordiplots
+Version: 0.1.0
+Author: John Quensen
+Maintainer: John Quensen <quensenj@msu.edu>
+Description: The vegan package includes several functions for adding
+    features to ordination plots: ordiarrows, ordibubbles, ordiellipse,
+    ordihull, ordispider, ordisurf. This package adds these same
+    features to ordination plots made with ggplot2.
+License: GPL-2
+Encoding: UTF-8
+LazyData: true
+Depends: ggplot2,
+    vegan
+RoxygenNote: 6.0.1
+Suggests: knitr,
+    rmarkdown
+VignetteBuilder: knitr
