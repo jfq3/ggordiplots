@@ -8,25 +8,25 @@ gg_ordicluster(ord, cluster, treatments = NA, choices = c(1, 2),
   prune = 0, col = 1, plot = TRUE)
 }
 \arguments{
-\item{ord}{An ordination object}
+\item{ord}{An ordination object.}
 
-\item{cluster}{A cluster object from 'hclust'}
+\item{cluster}{A cluster object from 'hclust' based on the same distance as 'ord.'}
 
-\item{choices}{Ordination axes to be plotted}
+\item{treatments}{A vector assigning treatments to samples.}
+
+\item{choices}{Ordination axes to be plotted.}
 
 \item{prune}{Number of upper level hierarchies removed from the dendrogram. If prune > 0, dendrogram will be disconnected.}
 
 \item{col}{A vector of cluster group memberships. Used to assign colors to line segments for each cluster group.}
 
 \item{plot}{A logical; defaults to TRUE.}
-
-\item{'treatments'}{A vector assigning treatments to samples}
 }
 \value{
 Invisibly returns a list of the data frames used to make the plot (df_ord, df_segments) and the plot itself (plot).
 }
 \description{
-Modeled after the ordicluster funtion in vegan, this function overlays an ordination object with a cluster dendogram. Functionality has been added to include treatment groups.
+Modeled after the ordicluster function in vegan, this function overlays an ordination object with a cluster dendogram. Functionality has been added to include treatment groups.
 }
 \details{
 'treatments' should be a vector of class factor and length equal to the number of samples included in the ordination and cluster; integers are not coerced into factors.

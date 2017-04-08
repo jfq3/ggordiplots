@@ -1,11 +1,11 @@
 #' Add Dendogram to Ordination Plot
 #'
-#' Modeled after the ordicluster funtion in vegan, this function overlays an ordination object with a cluster dendogram. Functionality has been added to include treatment groups.
+#' Modeled after the ordicluster function in vegan, this function overlays an ordination object with a cluster dendogram. Functionality has been added to include treatment groups.
 #'
-#' @param ord An ordination object
-#' @param cluster A cluster object from 'hclust'
-#' @param 'treatments' A vector assigning treatments to samples
-#' @param choices Ordination axes to be plotted
+#' @param ord An ordination object.
+#' @param cluster A cluster object from 'hclust' based on the same distance as 'ord.'
+#' @param treatments A vector assigning treatments to samples.
+#' @param choices Ordination axes to be plotted.
 #' @param prune Number of upper level hierarchies removed from the dendrogram. If prune > 0, dendrogram will be disconnected.
 #' @param col  A vector of cluster group memberships. Used to assign colors to line segments for each cluster group.
 #' @param plot A logical; defaults to TRUE.
@@ -16,7 +16,11 @@
 #'
 #' @return Invisibly returns a list of the data frames used to make the plot (df_ord, df_segments) and the plot itself (plot).
 #' @export
-#'
+#' @import vegan
+#' @import ggplot2
+#' @importFrom grDevices col2rgb
+#' @importFrom stats. weighted.mean
+#' @importFrom stats, weights
 #' @examples
 #' data(dune)
 #' data(dune.env)
