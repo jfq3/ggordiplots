@@ -2,7 +2,6 @@
 
 export(gg_envfit)
 export(gg_ordibubble)
-export(gg_ordicluster)
 export(gg_ordiplot)
 export(gg_ordisurf)
 import(ggplot2)
