@@ -17,3 +17,6 @@ RoxygenNote: 6.0.1
 Suggests: knitr,
     rmarkdown
 VignetteBuilder: knitr
+URL: http://github.com/jfq2/ggordiplots
+BugReports: http://github.com/jfq2/ggordiplots/issues
+
