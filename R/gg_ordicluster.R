@@ -27,7 +27,7 @@
 #' dune.dist <- vegdist(dune, method="bray")
 #' ord <- metaMDS(dune, k=3)
 #' cl <- hclust(dune.bray, method="complete")
-#' gg_ordicluster(ord, cluster, treatments=dune.env$Management, prune=3, col=cutree(cl, 4))
+#' gg_ordicluster(ord, cluster=cl, treatments=dune.env$Management, prune=3, col=cutree(cl, 4))
 #'
 gg_ordicluster <- function (ord, cluster, treatments=NA, choices=c(1,2), prune = 0, col = 1, plot=TRUE)
 {
@@ -49,10 +49,10 @@ gg_ordicluster <- function (ord, cluster, treatments=NA, choices=c(1,2), prune =
   w <- stats::weights(ord, display)
   weights.default <- function(object, ...) NULL
   w <- eval(w)
-  mrg <- cl$merge
+  mrg <- cluster$merge
   ord.scores <- scores(ord, display = display, choices=choices)
   if (nrow(mrg) != nrow(ord.scores) - 1)
-    stop("Dimensions do not match in 'ord' and 'cl'")
+    stop("Dimensions do not match in 'ord' and 'cluster'")
   if ((nrow(ord.scores) != length(treatments)) & (n.trts > 1))
     stop("Dimensions of 'ord' and 'treatments' do not match")
   if (length(w) == 1)

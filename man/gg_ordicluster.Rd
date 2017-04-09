@@ -37,7 +37,7 @@ data(dune.env)
 dune.dist <- vegdist(dune, method="bray")
 ord <- metaMDS(dune, k=3)
 cl <- hclust(dune.bray, method="complete")
-gg_ordicluster(ord, cluster, treatments=dune.env$Management, prune=3, col=cutree(cl, 4))
+gg_ordicluster(ord, cluster=cl, treatments=dune.env$Management, prune=3, col=cutree(cl, 4))
 
 }
 \author{
