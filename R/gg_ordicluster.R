@@ -19,7 +19,7 @@
 #' @import vegan
 #' @import ggplot2
 #' @importFrom grDevices col2rgb
-#' @importFrom stats. weighted.mean
+#' @importFrom stats, weighted.mean
 #' @importFrom stats, weights
 #' @examples
 #' data(dune)
