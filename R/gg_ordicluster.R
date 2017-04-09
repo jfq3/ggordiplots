@@ -1,4 +1,4 @@
-#' Add Dendogram to Ordination Plot
+#' Add Dendrogram to Ordination Plot
 #'
 #' Modeled after the ordicluster function in vegan, this function overlays an ordination object with a cluster dendogram. Functionality has been added to include treatment groups.
 #'
