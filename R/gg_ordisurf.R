@@ -33,7 +33,7 @@ gg_ordisurf <- function(ord, env.var, choices=c(1,2), var.label="Level", binwidt
   df_surf <- data.frame(na.omit(ordi.data)) #gets rid of the nas
 
   # Extract site coordinates for plotting.
-  df_ord <- as.data.frame(scores(ord, choices = choices))
+  df_ord <- as.data.frame(scores(ord, choices = choices, display = "sites"))
   colnames(df_ord) <- c("x", "y")
 
   # Make axis labels.
