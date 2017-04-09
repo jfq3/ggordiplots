@@ -81,7 +81,7 @@ With the above information and some knowledge of `ggplot2` you can modify the pl
 vegan:::veganCovEllipse
 ```
 
-# Example
+# Examples
 
 Say you want to make an ordination plot with points distinguished by two variables assigned to  symbol shape and symbol color. You can do this by extracting `df_ord` from a plot result and adding a second grouping variable. Continuing with the example from above:  
 
@@ -94,6 +94,21 @@ head(ord.data)
 ggplot(data=ord.data, aes(x=x, y=y, color=Management, shape=Use)) +
   geom_point(size=3) + xlab("PCA 1") + ylab("PCA 2")
 ```
+
+As long as you start from the same data, you can take plots and data frames generated with different functions and combine them in new ways. For example, add a dendrogram to an ellipse plot.  
+
+```{r, tidy=TRUE}
+data("dune")
+data("dune.env")
+dune.bray <- vegdist(dune, method="bray")
+ord <- cmdscale(dune.bray, k=nrow(dune)-1, eig=TRUE, add=TRUE)
+cl <- hclust(dune.bray, method="single")
+clstr.plot <- gg_ordicluster(ord, cluster=cl,  plot = FALSE)
+ellipse.plot <- gg_ordiplot(ord, groups = dune.env$Management, plot = FALSE)
+ellipse.plot$plot +
+  geom_segment(data=clstr.plot$df_segments, aes(x=x, y=y, xend=xend, yend=yend))
+```
+
 
 Enjoy!
 
