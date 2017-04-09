@@ -2,7 +2,7 @@
 % Please edit documentation in R/gg_ordicluster.R
 \name{gg_ordicluster}
 \alias{gg_ordicluster}
-\title{Add Dendogram to Ordination Plot}
+\title{Add Dendrogram to Ordination Plot}
 \usage{
 gg_ordicluster(ord, cluster, treatments = NA, choices = c(1, 2),
   prune = 0, col = 1, plot = TRUE)
