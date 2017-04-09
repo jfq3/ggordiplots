@@ -13,7 +13,7 @@ vignette: >
 
 There is not much reason to write another package for making simple ordination plots with `ggplot`. Gavin Simpson wrote his `ggvegan` package to provide `autoplot` methods for several classes of `vegan` ordination objects with `ggplot`. `Phyloseq` has been available for several years now, and includes wrappers for making ordinations and plotting them. The plot functions usually work with ordination objects made with `vegan` functions, too. The `ggord` package makes bi- and tri-plots with ordinations made with `vegan` and other packages. And it is really not difficult to write your own code - examples and scripts abound on the web. But I am not aware of a package including functions for implementing several `vegan` style plots I frequently use. Fitting environmental variables as vectors to an ordination with `envfit`, for example. Or delineating treatment groups with hulls, spiders, and ellipses with `vegan`'s family of `ordi-` functions. Hence my foray into the field with this package, `ggordiplots`.   
 
-# Hulls, Spiders & Ellipses with gg_ordiplots  
+# Hulls, Spiders & Ellipses with gg_ordiplot  
 
 `vegan` includes a family of functions for delineating treatment groups in an ordination plot: `ordihull` for enclosing all points for a treatment within a polygon, `ordispider` for linking all points for a treatment to their group centroid with line segments, and `ordiellipse` for scaling ellipses about group centroids in a variety of ways. I have collected all of these features into a single function, `gg_ordiplot`; each feature may be turned on or off with a logical as an argument. Usage (copied from the documentation available by entering `?gg_ordiplot`) is:  
 
@@ -87,7 +87,7 @@ set.seed(123)
 gg_envfit(ord=vare.mds, env=varechem, perm = 9999, alpha = 0.2)
 ```
 
-As with `gg_ordiplot`, the function silently returns a list of the data frames (df_ord and df_arrows) used for the plot and the plot itself. They can be captured, examined, used, and modified in the same ways as demonstrated above.  
+As with `gg_ordiplot`, the function silently returns a list of the data frames (df_ord and df_arrows) used for the plot and the plot itself. They can be captured, examined and used to make modified plots as explained in the other vignette ("Modifying ggordiplots Plots") included in this package.  
 
 ## gg_ordisurf and gg_ordibubble
 
@@ -144,6 +144,15 @@ ord <- cmdscale(dune.bray, k=nrow(dune)-1, eig=TRUE, add=TRUE)
 cl <- hclust(dune.bray, method="single")
 gg_ordicluster(ord, cluster=cl)
 ```
+
+And to demonstrate results with additional arguments:  
+
+```{r, tidy=TRUE}
+data(dune.env)
+cl <- hclust(dune.bray, method="complete")
+gg_ordicluster(ord, treatments = dune.env$Management, cluster = cl, prune = 3, col = cutree(cl, 4))
+```
+
 
 # Modifying Plots
 
