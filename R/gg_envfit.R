@@ -44,9 +44,7 @@ gg_envfit <- function(ord, env, groups=NA, scaling = 1, choices=c(1,2), perm = 9
   fit <- vegan::envfit(ord, env, choices = choices, perm = perm)
   df_arrows <- as.data.frame(scores(fit, "vectors"))
   mult <- vegan:::ordiArrowMul(fit)
-  if (mult < 1) {
-    df_arrows <- mult * df_arrows
-  }
+  df_arrows <- mult * df_arrows
   df_arrows$var <- rownames(df_arrows)
   df_arrows$p.val <- fit$vectors$pvals
   colnames(df_arrows) <- c("x", "y", "var", "p.val")
