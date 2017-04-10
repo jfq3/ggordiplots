@@ -98,7 +98,7 @@ set.seed(123)
 envfit(vare.mds, env=varechem, permutations = 9999)
 ```
 
-I used a fairly large value of `alpha` in the `gg_envfit` plot above so that vectors for variables with weak correlations would still be included in the plot. And of course they all plotted as vectors, i.e. straight lines, because that is the way the model works. Let's compare variables with strong and weak correlations using contour and bubble plots. For `gg_ordisurf` you may have to try different values of `binwidth` to get a plot that you like. Dividing the difference between the minimum and maximum values of the variable by 10 to 20 will put you in range. 
+I used a fairly large value of `alpha` in the `gg_envfit` plot above so that vectors for variables with weak correlations would still be included in the plot. And of course they all plotted as vectors, i.e. straight lines, because that is the way the model works. Let's compare variables with strong and weak correlations using contour and bubble plots. For `gg_ordisurf` you may have to try different values of `binwidth` to get a plot that you like. The default value is calculated as the difference between the minimum and maximum values of the variable divided by 15. Larger values give fewer contours and vice versa.  
 
 ```{r, tidy=TRUE}
 gg_ordisurf(ord = vare.mds, env.var=varechem$Al, binwidth = 20,  var.label = "Aluminum")

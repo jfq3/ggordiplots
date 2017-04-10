@@ -7,8 +7,10 @@
 #' @param env.var Environmental variable to fit to plot.
 #' @param choices Axes to plot.
 #' @param var.label Label for the legend; default is "Level."
-#' @param binwidth Controls the number of countours in the plot.
+#' @param binwidth Controls the number of contours in the plot.
 #' @param plot A logical for plotting; defaults to TRUE.
+#'
+#' @details By default, `binwidth` is calculated as the difference between minimum and maximum values of the variable divided by 15.
 #'
 #' @return Silently returns the plot and data frames used for the plotting.
 #' @export
@@ -24,7 +26,7 @@
 #' vare.mds <- monoMDS(vare.dist)
 #' gg_ordisurf(vare.mds, env.var = varechem$Baresoil, var.label="Bare Soil")
 
-gg_ordisurf <- function(ord, env.var, choices=c(1,2), var.label="Level", binwidth=2, plot=TRUE) {
+gg_ordisurf <- function(ord, env.var, choices=c(1,2), var.label="Level", binwidth, plot=TRUE) {
   # Extract ordisurf data for plotting
   ordi <- vegan::ordisurf(ord ~ env.var, plot=FALSE) #created the ordisurf object
   ordi.grid <- ordi$grid #extracts the ordisurf object
@@ -40,6 +42,12 @@ gg_ordisurf <- function(ord, env.var, choices=c(1,2), var.label="Level", binwidt
   # Make axis labels.
   xlab <- axis.labels[1]
   ylab <- axis.labels[2]
+
+  # Calculate default binwidth
+  if(missing(binwidth)) {
+    r <- range(env.var)
+    binwidth <- (r[2]-r[1])/15
+  }
 
   ## Plotting in ggplot2
   plt <- ggplot(data=df_ord, aes(x=x, y=y)) + geom_point() +

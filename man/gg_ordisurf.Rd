@@ -4,8 +4,8 @@
 \alias{gg_ordisurf}
 \title{Ordisurf with ggplot2}
 \usage{
-gg_ordisurf(ord, env.var, choices = c(1, 2), var.label = "Level",
-  binwidth = 2, plot = TRUE)
+gg_ordisurf(ord, env.var, choices = c(1, 2), var.label = "Level", binwidth,
+  plot = TRUE)
 }
 \arguments{
 \item{ord}{An ordination object.}
@@ -16,7 +16,7 @@ gg_ordisurf(ord, env.var, choices = c(1, 2), var.label = "Level",
 
 \item{var.label}{Label for the legend; default is "Level."}
 
-\item{binwidth}{Controls the number of countours in the plot.}
+\item{binwidth}{Controls the number of contours in the plot.}
 
 \item{plot}{A logical for plotting; defaults to TRUE.}
 }
@@ -26,6 +26,9 @@ Silently returns the plot and data frames used for the plotting.
 \description{
 Fits a surface (contour) plot of an environmental variable
 to an ordination plot.
+}
+\details{
+By default, `binwidth` is calculated as the difference between minimum and maximum values of the variable divided by 15.
 }
 \examples{
 data(varespec)
