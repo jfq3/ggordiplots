@@ -51,9 +51,10 @@ gg_ordisurf <- function(ord, env.var, choices=c(1,2), var.label="Level", binwidt
 
   ## Plotting in ggplot2
   plt <- ggplot(data=df_ord, aes(x=x, y=y)) + geom_point() +
+
     xlab(xlab) + ylab(ylab) +
-    stat_contour(data = df_surf, aes(x = x, y = y, z = z, colour = ..level..), binwidth = binwidth) +
-    labs(color=var.label)
+    stat_contour(data = df_surf, aes(x=x, y=y, z=z, color= ..level..), binwidth=binwidth) +
+    labs(color=var.label) + coord_fixed(ratio=1)
   #can change the binwidth depending on how many contours you want
 
   # Plot?

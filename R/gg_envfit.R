@@ -66,6 +66,8 @@ gg_envfit <- function(ord, env, groups=NA, scaling = 1, choices=c(1,2), perm = 9
                  arrow=arrow(angle=angle, length=unit(len, unit)), color=arrow.col) +
     geom_text(data=df_arrows, aes(x=x, y=y, label=var), color=arrow.col)
 
+  plt <- plt + coord_fixed(ratio=1)
+
   # Plot?
   if (plot) {print(plt)}
 

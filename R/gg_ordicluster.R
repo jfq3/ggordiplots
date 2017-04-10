@@ -128,7 +128,7 @@ gg_ordicluster <- function (ord, cluster, treatments=NA, choices=c(1,2), prune =
                  show.legend = FALSE) +
     geom_point(data=df_ord, aes(x=x, y=y, shape=Treatment), size=3,
                show.legend = show.legend) +
-    xlab(xlab) + ylab(ylab)
+    xlab(xlab) + ylab(ylab) + coord_fixed(ratio=1)
 
   if (plot==TRUE) {print(plt)}
 

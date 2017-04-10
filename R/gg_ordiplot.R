@@ -113,6 +113,8 @@ gg_ordiplot <- function(ord, groups, scaling = 1, choices = c(1,2), kind = c("sd
     plt <- plt + geom_segment(data=df_spiders, aes(x=cntr.x, xend=x, y=cntr.y, yend=y, color=Group), show.legend = FALSE)
   }
 
+  plt <- plt + coord_fixed(ratio=1)
+
   # Plot?
   if (plot) {print(plt)}
 

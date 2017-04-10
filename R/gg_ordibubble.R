@@ -31,7 +31,8 @@ gg_ordibubble <- function(ord, env.var, var.label="Level", choices=c(1,2), plot=
   colnames(df_ord) <- c("x", "y", var.label)
 
   plt <- ggplot(data=df_ord, aes(x=x, y=y, size=env.var)) +
-    geom_point() + xlab(xlab) + ylab(ylab) + labs(size=var.label)
+    geom_point() + xlab(xlab) + ylab(ylab) + labs(size=var.label) +
+    coord_fixed(ratio=1)
 
   # Plot?
   if (plot) {print(plt)}
