@@ -32,6 +32,7 @@
 gg_envfit <- function(ord, env, groups=NA, scaling = 1, choices=c(1,2), perm = 999, alpha = 0.05, angle=20, len=0.5, unit="cm", arrow.col="red", pt.size=3, plot=TRUE) {
   df_ord <- vegan::scores(ord, display = "sites", choices = choices, scaling = scaling)
   df_ord <- as.data.frame(df_ord)
+  axis.labels <- colnames(df_ord)
   if (!is.na(groups[1])) {
     df_ord$Group <- groups
     df_ord <- df_ord[ , c(3,1,2)]
@@ -51,8 +52,8 @@ gg_envfit <- function(ord, env, groups=NA, scaling = 1, choices=c(1,2), perm = 9
   colnames(df_arrows) <- c("x", "y", "var", "p.val")
   df_arrows <- df_arrows[df_arrows$p.val<=alpha, ]
 
-  xlab <- paste("Axis", choices[1], sep=" ")
-  ylab <- paste("Axis", choices[2], sep=" ")
+  xlab <- axis.labels[1]
+  ylab <- axis.labels[2]
 
   if (is.na(groups[1])) {
     plt <- ggplot(data=df_ord, aes(x=x, y=y)) + geom_point(size=pt.size) +

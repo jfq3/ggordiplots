@@ -115,11 +115,12 @@ gg_ordicluster <- function (ord, cluster, treatments=NA, choices=c(1,2), prune =
   df_segments <- temp2
 
   df_ord <- as.data.frame(ord.scores)
+  axis.labels <- colnames(df_ord)
   df_ord$Treatment <- treatments
   colnames(df_ord) <- c("x", "y", "Treatment")
 
-  xlab <- paste("Axis", choices[1], sep=" ")
-  ylab <- paste("Axis", choices[2], sep=" ")
+  xlab <- axis.labels[1]
+  ylab <- axis.labels[2]
 
   plt <- ggplot() +
     geom_segment(data=df_segments, aes(x=x, y=y, xend=xend, yend=yend),

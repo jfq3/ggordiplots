@@ -24,10 +24,12 @@
 #'
 gg_ordibubble <- function(ord, env.var, var.label="Level", choices=c(1,2), plot=TRUE) {
   df_ord <- as.data.frame(vegan::scores(ord, display="sites", choices=choices))
+  axis.labels <- colnames(df_ord)
   df_ord$var <- env.var
+  xlab <- axis.labels[1]
+  ylab <- axis.labels[2]
   colnames(df_ord) <- c("x", "y", var.label)
-  xlab <- paste("Axis", choices[1], sep=" ")
-  ylab <- paste("Axis", choices[2], sep=" ")
+
   plt <- ggplot(data=df_ord, aes(x=x, y=y, size=env.var)) +
     geom_point() + xlab(xlab) + ylab(ylab) + labs(size=var.label)
 

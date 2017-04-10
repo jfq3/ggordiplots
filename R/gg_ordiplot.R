@@ -39,6 +39,7 @@ gg_ordiplot <- function(ord, groups, scaling = 1, choices = c(1,2), kind = c("sd
 
   # Get site coordinates to plot.
   df_ord <- vegan::scores(ord, display = "sites", scaling=scaling, choices=choices)
+  axis.labels <- colnames(df_ord)
   df_ord <- data.frame(x=df_ord[ , 1], y=df_ord[ , 2], Group=groups)
 
   # Get ellipse centers to annotate.
@@ -86,8 +87,8 @@ gg_ordiplot <- function(ord, groups, scaling = 1, choices = c(1,2), kind = c("sd
   df_spiders <- df_spiders[df_spiders$Group %in% show.groups, ]
 
   # Make basic ggplot with ellipses.
-  xlab <- paste("Axis", choices[1], sep = " ")
-  ylab <- paste("Axis", choices[2], sep = " ")
+  xlab <- axis.labels[1]
+  ylab <- axis.labels[2]
   plt <- ggplot2::ggplot() +
     geom_point(data=df_ord, aes(x=x, y=y, color=Group), size=3) +
     xlab(xlab) + ylab(ylab)
