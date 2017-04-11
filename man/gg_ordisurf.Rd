@@ -30,10 +30,19 @@ to an ordination plot.
 \details{
 By default, `binwidth` is calculated as the difference between minimum and maximum values of the variable divided by 15.
 }
+\note{
+Code for extracting plot data from the ordisurf result was taken from a blog by Oliviea Rata Burge.
+}
 \examples{
 data(varespec)
 data(varechem)
 vare.dist <- vegdist(varespec)
 vare.mds <- monoMDS(vare.dist)
 gg_ordisurf(vare.mds, env.var = varechem$Baresoil, var.label="Bare Soil")
+}
+\references{
+https://oliviarata.wordpress.com/2014/07/17/ordinations-in-ggplot2-v2-ordisurf/'
+}
+\author{
+Olivia Rata Burge, John Quensen
 }

@@ -19,6 +19,9 @@
 #' @import vegan
 #' @importFrom stats na.omit
 #'
+#' @note Code for extracting plot data from the ordisurf result was taken from a blog by Oliviea Rata Burge.
+#' @author Olivia Rata Burge, John Quensen
+#' @references https://oliviarata.wordpress.com/2014/07/17/ordinations-in-ggplot2-v2-ordisurf/'
 #' @examples
 #' data(varespec)
 #' data(varechem)
