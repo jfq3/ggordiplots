@@ -33,31 +33,31 @@ data("dune")
 data("dune.env")
 dune.hel <- decostand(dune, method = "hellinger")
 ord <- rda(dune.hel)
-gg_ordiplot(ord, groups = dune.env$Management)
+gg_ordiplot(ord, groups = dune.env$Management, pt.size = 3)
 ```
 
 By default, ellipses indicating one standard deviation about the centroid are plotted for each group (i.e. kind = "sd"). This can be changed to give the standard errors about the group centroids:  
 
 ```{r, tidy=TRUE}
-gg_ordiplot(ord, groups = dune.env$Management, kind = "se")
+gg_ordiplot(ord, groups = dune.env$Management, pt.size = 3, kind = "se")
 ```
 
 If `kind` equals "se", or "sd", confidence intervals may be shown by setting `conf` to a numeric value. For example, show 95% confidence intervals for the standard errors:  
 
 ```{r, tidy=TRUE}
-gg_ordiplot(ord, groups = dune.env$Management, kind = "se", conf=0.95)
+gg_ordiplot(ord, groups = dune.env$Management, kind = "se", conf=0.95, pt.size = 3)
 ```
 
 Axes plotted may be chosen with choices of axes and ellipses (or other features) limited to a subset of the treatment groups with `show.groups`. For example, plot ordination axes 2 and 3, and draw ellipses for only BF and HF:  
 
 ```{r, tidy=TRUE}
-gg_ordiplot(ord, groups = dune.env$Management, choices=c(2,3), show.groups = c("BF", "HF"),  kind = "se", conf=0.95)
+gg_ordiplot(ord, groups = dune.env$Management, choices=c(2,3), show.groups = c("BF", "HF"),  kind = "se", pt.size = 3, conf=0.95)
 ```
 
 As a final example, indicate treatment groups with hulls, labels and spiders instead of ellipses.    
 
 ```{r, tidy=TRUE}
-gg_ordiplot(ord, groups = dune.env$Management, hull = TRUE, label = TRUE, spiders = TRUE, ellipse = FALSE, plot = TRUE)
+gg_ordiplot(ord, groups = dune.env$Management, hull = TRUE, label = TRUE, spiders = TRUE, ellipse = FALSE, pt.size = 3, plot = TRUE)
 ```
 
 
@@ -84,7 +84,7 @@ vare.dist <- vegdist(varespec, method="bray")
 set.seed(123)
 vare.mds <- monoMDS(vare.dist)
 set.seed(123)
-gg_envfit(ord=vare.mds, env=varechem, perm = 9999, alpha = 0.2)
+gg_envfit(ord=vare.mds, env=varechem, perm = 9999, pt.size = 2, alpha = 0.2)
 ```
 
 As with `gg_ordiplot`, the function silently returns a list of the data frames (df_ord and df_arrows) used for the plot and the plot itself. They can be captured, examined and used to make modified plots as explained in the other vignette ("Modifying ggordiplots Plots") included in this package.  
@@ -101,7 +101,7 @@ envfit(vare.mds, env=varechem, permutations = 9999)
 I used a fairly large value of `alpha` in the `gg_envfit` plot above so that vectors for variables with weak correlations would still be included in the plot. And of course they all plotted as vectors, i.e. straight lines, because that is the way the model works. Let's compare variables with strong and weak correlations using contour and bubble plots. For `gg_ordisurf` you may have to try different values of `binwidth` to get a plot that you like. The default value is calculated as the difference between the minimum and maximum values of the variable divided by 15. Larger values give fewer contours and vice versa.  
 
 ```{r, tidy=TRUE}
-gg_ordisurf(ord = vare.mds, env.var=varechem$Al, binwidth = 20,  var.label = "Aluminum")
+gg_ordisurf(ord = vare.mds, env.var=varechem$Al, binwidth = 20, pt.size = 1, var.label = "Aluminum")
 gg_ordibubble(ord = vare.mds, env.var=varechem$Al, var.label = "Aluminum")
 ```
 
@@ -150,7 +150,7 @@ And to demonstrate results with additional arguments:
 ```{r, tidy=TRUE}
 data(dune.env)
 cl <- hclust(dune.bray, method="complete")
-gg_ordicluster(ord, treatments = dune.env$Management, cluster = cl, prune = 3, col = cutree(cl, 4))
+gg_ordicluster(ord, treatments = dune.env$Management, cluster = cl, prune = 3, col = cutree(cl, 4), pt.size = 2)
 ```
 
 

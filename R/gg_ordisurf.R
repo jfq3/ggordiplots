@@ -8,6 +8,7 @@
 #' @param choices Axes to plot.
 #' @param var.label Label for the legend; default is "Level."
 #' @param binwidth Controls the number of contours in the plot.
+#' @param pt.size Symbol size.
 #' @param plot A logical for plotting; defaults to TRUE.
 #'
 #' @details By default, `binwidth` is calculated as the difference between minimum and maximum values of the variable divided by 15.
@@ -29,7 +30,7 @@
 #' vare.mds <- monoMDS(vare.dist)
 #' gg_ordisurf(vare.mds, env.var = varechem$Baresoil, var.label="Bare Soil")
 
-gg_ordisurf <- function(ord, env.var, choices=c(1,2), var.label="Level", binwidth, plot=TRUE) {
+gg_ordisurf <- function(ord, env.var, choices=c(1,2), var.label="Level", binwidth, pt.size = 3, plot=TRUE) {
   # Extract ordisurf data for plotting
   ordi <- vegan::ordisurf(ord ~ env.var, plot=FALSE) #created the ordisurf object
   ordi.grid <- ordi$grid #extracts the ordisurf object
@@ -53,7 +54,7 @@ gg_ordisurf <- function(ord, env.var, choices=c(1,2), var.label="Level", binwidt
   }
 
   ## Plotting in ggplot2
-  plt <- ggplot(data=df_ord, aes(x=x, y=y)) + geom_point() +
+  plt <- ggplot(data=df_ord, aes(x=x, y=y)) + geom_point(size = pt.size) +
 
     xlab(xlab) + ylab(ylab) +
     stat_contour(data = df_surf, aes(x=x, y=y, z=z, color= ..level..), binwidth=binwidth) +

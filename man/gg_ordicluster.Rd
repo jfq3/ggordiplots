@@ -5,7 +5,7 @@
 \title{Add Dendrogram to Ordination Plot}
 \usage{
 gg_ordicluster(ord, cluster, treatments = NA, choices = c(1, 2),
-  prune = 0, col = 1, plot = TRUE)
+  prune = 0, col = 1, pt.size = 3, plot = TRUE)
 }
 \arguments{
 \item{ord}{An ordination object.}
@@ -19,6 +19,8 @@ gg_ordicluster(ord, cluster, treatments = NA, choices = c(1, 2),
 \item{prune}{Number of upper level hierarchies removed from the dendrogram. If prune > 0, dendrogram will be disconnected.}
 
 \item{col}{A vector of cluster group memberships. Used to assign colors to line segments for each cluster group.}
+
+\item{pt.size}{Symbol size.}
 
 \item{plot}{A logical; defaults to TRUE.}
 }

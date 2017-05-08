@@ -15,6 +15,7 @@
 #' @param label A logical for labeling group centroids.
 #' @param hull A logical for plotting group hulls.
 #' @param spiders A logical for plotting group spiders.
+#' @param pt.size Symbol size.
 #' @param plot A logical for plotting; defaults to TRUE.
 #'
 #' @return
@@ -31,7 +32,7 @@
 #' ord <- rda(dune.hel)
 #' gg_ordiplot(ord, groups = dune.env$Management)
 #'
-gg_ordiplot <- function(ord, groups, scaling = 1, choices = c(1,2), kind = c("sd", "se", "ehull"), conf=NULL, show.groups="all", ellipse = TRUE, label = FALSE, hull = FALSE, spiders = FALSE, plot=TRUE) {
+gg_ordiplot <- function(ord, groups, scaling = 1, choices = c(1,2), kind = c("sd", "se", "ehull"), conf=NULL, show.groups="all", ellipse = TRUE, label = FALSE, hull = FALSE, spiders = FALSE, pt.size = 3, plot=TRUE) {
 
   if (show.groups[1]=="all") {
     show.groups <- as.vector(levels(groups))
@@ -90,7 +91,7 @@ gg_ordiplot <- function(ord, groups, scaling = 1, choices = c(1,2), kind = c("sd
   xlab <- axis.labels[1]
   ylab <- axis.labels[2]
   plt <- ggplot2::ggplot() +
-    geom_point(data=df_ord, aes(x=x, y=y, color=Group), size=3) +
+    geom_point(data=df_ord, aes(x=x, y=y, color=Group), size = pt.size) +
     xlab(xlab) + ylab(ylab)
 
   # Add ellipses.

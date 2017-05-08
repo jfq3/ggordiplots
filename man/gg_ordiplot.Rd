@@ -6,7 +6,8 @@
 \usage{
 gg_ordiplot(ord, groups, scaling = 1, choices = c(1, 2), kind = c("sd",
   "se", "ehull"), conf = NULL, show.groups = "all", ellipse = TRUE,
-  label = FALSE, hull = FALSE, spiders = FALSE, plot = TRUE)
+  label = FALSE, hull = FALSE, spiders = FALSE, pt.size = 3,
+  plot = TRUE)
 }
 \arguments{
 \item{ord}{An ordination object.}
@@ -30,6 +31,8 @@ gg_ordiplot(ord, groups, scaling = 1, choices = c(1, 2), kind = c("sd",
 \item{hull}{A logical for plotting group hulls.}
 
 \item{spiders}{A logical for plotting group spiders.}
+
+\item{pt.size}{Symbol size.}
 
 \item{plot}{A logical for plotting; defaults to TRUE.}
 }

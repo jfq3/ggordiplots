@@ -5,7 +5,7 @@
 \title{Ordisurf with ggplot2}
 \usage{
 gg_ordisurf(ord, env.var, choices = c(1, 2), var.label = "Level", binwidth,
-  plot = TRUE)
+  pt.size = 3, plot = TRUE)
 }
 \arguments{
 \item{ord}{An ordination object.}
@@ -17,6 +17,8 @@ gg_ordisurf(ord, env.var, choices = c(1, 2), var.label = "Level", binwidth,
 \item{var.label}{Label for the legend; default is "Level."}
 
 \item{binwidth}{Controls the number of contours in the plot.}
+
+\item{pt.size}{Symbol size.}
 
 \item{plot}{A logical for plotting; defaults to TRUE.}
 }

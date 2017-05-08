@@ -8,6 +8,7 @@
 #' @param choices Ordination axes to be plotted.
 #' @param prune Number of upper level hierarchies removed from the dendrogram. If prune > 0, dendrogram will be disconnected.
 #' @param col  A vector of cluster group memberships. Used to assign colors to line segments for each cluster group.
+#' @param pt.size Symbol size.
 #' @param plot A logical; defaults to TRUE.
 #'
 #' @details 'treatments' should be a vector of class factor and length equal to the number of samples included in the ordination and cluster; integers are not coerced into factors.
@@ -29,7 +30,7 @@
 #' cl <- hclust(dune.bray, method="complete")
 #' gg_ordicluster(ord, cluster=cl, treatments=dune.env$Management, prune=3, col=cutree(cl, 4))
 #'
-gg_ordicluster <- function (ord, cluster, treatments=NA, choices=c(1,2), prune = 0, col = 1, plot=TRUE)
+gg_ordicluster <- function (ord, cluster, treatments=NA, choices=c(1,2), prune = 0, col = 1, pt.size = 3, plot=TRUE)
 {
   if (is.numeric(treatments)) {
     stop("'treatments' cannot be numeric")
@@ -126,7 +127,7 @@ gg_ordicluster <- function (ord, cluster, treatments=NA, choices=c(1,2), prune =
     geom_segment(data=df_segments, aes(x=x, y=y, xend=xend, yend=yend),
                  color=df_segments$Group,
                  show.legend = FALSE) +
-    geom_point(data=df_ord, aes(x=x, y=y, shape=Treatment), size=3,
+    geom_point(data=df_ord, aes(x=x, y=y, shape=Treatment), size=pt.size,
                show.legend = show.legend) +
     xlab(xlab) + ylab(ylab) + coord_fixed(ratio=1)
 
