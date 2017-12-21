@@ -1,7 +1,7 @@
 Package: ggordiplots
 Type: Package
 Title: Make ggplot Versions of Vegan's Ordiplots
-Version: 0.2.4
+Version: 0.2.5
 Author: John Quensen
 Maintainer: John Quensen <quensenj@msu.edu>
 Description: The vegan package includes several functions for adding

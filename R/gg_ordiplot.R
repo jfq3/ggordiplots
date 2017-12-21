@@ -33,7 +33,7 @@
 #' gg_ordiplot(ord, groups = dune.env$Management)
 #'
 gg_ordiplot <- function(ord, groups, scaling = 1, choices = c(1,2), kind = c("sd", "se", "ehull"), conf=NULL, show.groups="all", ellipse = TRUE, label = FALSE, hull = FALSE, spiders = FALSE, pt.size = 3, plot=TRUE) {
-
+  groups <- as.factor(groups)
   if (show.groups[1]=="all") {
     show.groups <- as.vector(levels(groups))
   }

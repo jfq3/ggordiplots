@@ -35,7 +35,7 @@ gg_ordicluster <- function (ord, cluster, treatments=NA, choices=c(1,2), prune =
   if (is.numeric(treatments)) {
     stop("'treatments' cannot be numeric")
   }
-  n.trts <- nlevels(treatments)
+  n.trts <- nlevels(as.factor(treatments))
   if (n.trts==0) {
     treatments <- "none"
     n.trts <- 1
