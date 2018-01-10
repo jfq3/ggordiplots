@@ -2,12 +2,12 @@
 title: "Ordiplots with ggordiplots"
 author: "John Quensen"
 date: "`r Sys.Date()`"
-# output: pdf_document
-output: rmarkdown::html_vignette
-vignette: >
-  %\VignetteIndexEntry{Ordiplots with ggplot}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
+output: pdf_document
+# output: rmarkdown::html_vignette
+# vignette: >
+#   %\VignetteIndexEntry{Ordiplots with ggplot}
+#   %\VignetteEngine{knitr::rmarkdown}
+#   %\VignetteEncoding{UTF-8}
 ---
 
 # Introduction
