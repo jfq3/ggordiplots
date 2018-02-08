@@ -13,6 +13,7 @@ Encoding: UTF-8
 LazyData: true
 Depends: ggplot2,
     vegan,
+    formatR,
     R (>= 3.2.0)
 RoxygenNote: 6.0.1
 Suggests: knitr,
