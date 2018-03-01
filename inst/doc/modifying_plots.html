@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="author" content="John Quensen" />
+
+<meta name="date" content="2018-03-01" />
+
+<title>Modifying Plots Made with ggordiplots</title>
+
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+
+
+<link href="data:text/css;charset=utf-8,body%20%7B%0Abackground%2Dcolor%3A%20%23fff%3B%0Amargin%3A%201em%20auto%3B%0Amax%2Dwidth%3A%20700px%3B%0Aoverflow%3A%20visible%3B%0Apadding%2Dleft%3A%202em%3B%0Apadding%2Dright%3A%202em%3B%0Afont%2Dfamily%3A%20%22Open%20Sans%22%2C%20%22Helvetica%20Neue%22%2C%20Helvetica%2C%20Arial%2C%20sans%2Dserif%3B%0Afont%2Dsize%3A%2014px%3B%0Aline%2Dheight%3A%201%2E35%3B%0A%7D%0A%23header%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0A%23TOC%20%7B%0Aclear%3A%20both%3B%0Amargin%3A%200%200%2010px%2010px%3B%0Apadding%3A%204px%3B%0Awidth%3A%20400px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Aborder%2Dradius%3A%205px%3B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Afont%2Dsize%3A%2013px%3B%0Aline%2Dheight%3A%201%2E3%3B%0A%7D%0A%23TOC%20%2Etoctitle%20%7B%0Afont%2Dweight%3A%20bold%3B%0Afont%2Dsize%3A%2015px%3B%0Amargin%2Dleft%3A%205px%3B%0A%7D%0A%23TOC%20ul%20%7B%0Apadding%2Dleft%3A%2040px%3B%0Amargin%2Dleft%3A%20%2D1%2E5em%3B%0Amargin%2Dtop%3A%205px%3B%0Amargin%2Dbottom%3A%205px%3B%0A%7D%0A%23TOC%20ul%20ul%20%7B%0Amargin%2Dleft%3A%20%2D2em%3B%0A%7D%0A%23TOC%20li%20%7B%0Aline%2Dheight%3A%2016px%3B%0A%7D%0Atable%20%7B%0Amargin%3A%201em%20auto%3B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dcolor%3A%20%23DDDDDD%3B%0Aborder%2Dstyle%3A%20outset%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0A%7D%0Atable%20th%20%7B%0Aborder%2Dwidth%3A%202px%3B%0Apadding%3A%205px%3B%0Aborder%2Dstyle%3A%20inset%3B%0A%7D%0Atable%20td%20%7B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dstyle%3A%20inset%3B%0Aline%2Dheight%3A%2018px%3B%0Apadding%3A%205px%205px%3B%0A%7D%0Atable%2C%20table%20th%2C%20table%20td%20%7B%0Aborder%2Dleft%2Dstyle%3A%20none%3B%0Aborder%2Dright%2Dstyle%3A%20none%3B%0A%7D%0Atable%20thead%2C%20table%20tr%2Eeven%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Ap%20%7B%0Amargin%3A%200%2E5em%200%3B%0A%7D%0Ablockquote%20%7B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Apadding%3A%200%2E25em%200%2E75em%3B%0A%7D%0Ahr%20%7B%0Aborder%2Dstyle%3A%20solid%3B%0Aborder%3A%20none%3B%0Aborder%2Dtop%3A%201px%20solid%20%23777%3B%0Amargin%3A%2028px%200%3B%0A%7D%0Adl%20%7B%0Amargin%2Dleft%3A%200%3B%0A%7D%0Adl%20dd%20%7B%0Amargin%2Dbottom%3A%2013px%3B%0Amargin%2Dleft%3A%2013px%3B%0A%7D%0Adl%20dt%20%7B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Aul%20%7B%0Amargin%2Dtop%3A%200%3B%0A%7D%0Aul%20li%20%7B%0Alist%2Dstyle%3A%20circle%20outside%3B%0A%7D%0Aul%20ul%20%7B%0Amargin%2Dbottom%3A%200%3B%0A%7D%0Apre%2C%20code%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0Aborder%2Dradius%3A%203px%3B%0Acolor%3A%20%23333%3B%0Awhite%2Dspace%3A%20pre%2Dwrap%3B%20%0A%7D%0Apre%20%7B%0Aborder%2Dradius%3A%203px%3B%0Amargin%3A%205px%200px%2010px%200px%3B%0Apadding%3A%2010px%3B%0A%7D%0Apre%3Anot%28%5Bclass%5D%29%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Acode%20%7B%0Afont%2Dfamily%3A%20Consolas%2C%20Monaco%2C%20%27Courier%20New%27%2C%20monospace%3B%0Afont%2Dsize%3A%2085%25%3B%0A%7D%0Ap%20%3E%20code%2C%20li%20%3E%20code%20%7B%0Apadding%3A%202px%200px%3B%0A%7D%0Adiv%2Efigure%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0Aimg%20%7B%0Abackground%2Dcolor%3A%20%23FFFFFF%3B%0Apadding%3A%202px%3B%0Aborder%3A%201px%20solid%20%23DDDDDD%3B%0Aborder%2Dradius%3A%203px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Amargin%3A%200%205px%3B%0A%7D%0Ah1%20%7B%0Amargin%2Dtop%3A%200%3B%0Afont%2Dsize%3A%2035px%3B%0Aline%2Dheight%3A%2040px%3B%0A%7D%0Ah2%20%7B%0Aborder%2Dbottom%3A%204px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Apadding%2Dbottom%3A%202px%3B%0Afont%2Dsize%3A%20145%25%3B%0A%7D%0Ah3%20%7B%0Aborder%2Dbottom%3A%202px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Afont%2Dsize%3A%20120%25%3B%0A%7D%0Ah4%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23f7f7f7%3B%0Amargin%2Dleft%3A%208px%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Ah5%2C%20h6%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23ccc%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Aa%20%7B%0Acolor%3A%20%230033dd%3B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0Aa%3Ahover%20%7B%0Acolor%3A%20%236666ff%3B%20%7D%0Aa%3Avisited%20%7B%0Acolor%3A%20%23800080%3B%20%7D%0Aa%3Avisited%3Ahover%20%7B%0Acolor%3A%20%23BB00BB%3B%20%7D%0Aa%5Bhref%5E%3D%22http%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0Aa%5Bhref%5E%3D%22https%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0A%0Acode%20%3E%20span%2Ekw%20%7B%20color%3A%20%23555%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Edt%20%7B%20color%3A%20%23902000%3B%20%7D%20%0Acode%20%3E%20span%2Edv%20%7B%20color%3A%20%2340a070%3B%20%7D%20%0Acode%20%3E%20span%2Ebn%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Efl%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Ech%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Est%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Eco%20%7B%20color%3A%20%23888888%3B%20font%2Dstyle%3A%20italic%3B%20%7D%20%0Acode%20%3E%20span%2Eot%20%7B%20color%3A%20%23007020%3B%20%7D%20%0Acode%20%3E%20span%2Eal%20%7B%20color%3A%20%23ff0000%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Efu%20%7B%20color%3A%20%23900%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%20code%20%3E%20span%2Eer%20%7B%20color%3A%20%23a61717%3B%20background%2Dcolor%3A%20%23e3d2d2%3B%20%7D%20%0A" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Modifying Plots Made with ggordiplots</h1>
+<h4 class="author"><em>John Quensen</em></h4>
+<h4 class="date"><em>2018-03-01</em></h4>
+
+
+
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p>To enable further customization, all functions in this package return silently a list of the data frames used for the plots and the plots themselves These may be captured by assigning the function result to a variable. For <code>gg_ordiplot</code>, for example, get a list of the names of the items returned:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">suppressPackageStartupMessages</span>(<span class="kw">library</span>(vegan))</code></pre></div>
+<pre><code>## Warning: package 'vegan' was built under R version 3.4.3</code></pre>
+<pre><code>## Warning: package 'permute' was built under R version 3.4.3</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">suppressPackageStartupMessages</span>(<span class="kw">library</span>(ggplot2))</code></pre></div>
+<pre><code>## Warning: package 'ggplot2' was built under R version 3.4.3</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">suppressPackageStartupMessages</span>(<span class="kw">library</span>(ggordiplots))
+<span class="kw">data</span>(<span class="st">&quot;dune&quot;</span>)
+<span class="kw">data</span>(<span class="st">&quot;dune.env&quot;</span>)
+dune.hel &lt;-<span class="st"> </span><span class="kw">decostand</span>(dune, <span class="dt">method =</span> <span class="st">&quot;hellinger&quot;</span>)
+ord &lt;-<span class="st"> </span><span class="kw">rda</span>(dune.hel)
+my.plot &lt;-<span class="st"> </span><span class="kw">gg_ordiplot</span>(ord, <span class="dt">groups =</span> dune.env<span class="op">$</span>Management, <span class="dt">hull =</span> <span class="ot">TRUE</span>, <span class="dt">spiders =</span> <span class="ot">TRUE</span>, 
+    <span class="dt">ellipse =</span> <span class="ot">FALSE</span>, <span class="dt">plot =</span> <span class="ot">FALSE</span>)
+<span class="kw">names</span>(my.plot)</code></pre></div>
+<pre><code>## [1] &quot;df_ord&quot;      &quot;df_mean.ord&quot; &quot;df_ellipse&quot;  &quot;df_hull&quot;     &quot;df_spiders&quot; 
+## [6] &quot;plot&quot;</code></pre>
+<p>The last object in the list is the plot itself. You can capture the plot and make modifications by adding <code>ggplot2</code> labels and themes:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">a.plot &lt;-<span class="st"> </span>my.plot<span class="op">$</span>plot
+a.plot <span class="op">+</span><span class="st"> </span><span class="kw">theme_bw</span>() <span class="op">+</span><span class="st"> </span><span class="kw">labs</span>(<span class="dt">color =</span> <span class="st">&quot;Management&quot;</span>, <span class="dt">x =</span> <span class="st">&quot;PCA 1&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;PCA 2&quot;</span>, <span class="dt">title =</span> <span class="st">&quot;My Title&quot;</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">theme</span>(<span class="dt">plot.title =</span> <span class="kw">element_text</span>(<span class="dt">hjust =</span> <span class="fl">0.5</span>))  <span class="co"># centers main title, ggplot2 version 2.2+</span></code></pre></div>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
+<p>The other items in the list are the data frames used for the plot layers:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>df_ord</td>
+<td>Point coordinates for ordination with Group variable</td>
+</tr>
+<tr class="even">
+<td>df_mean.ord</td>
+<td>Label coordinates</td>
+</tr>
+<tr class="odd">
+<td>df_ellipse</td>
+<td>Data for plotting ellipses</td>
+</tr>
+<tr class="even">
+<td>df_hull</td>
+<td>Data for plotting hulls</td>
+</tr>
+<tr class="odd">
+<td>df_spiders</td>
+<td>Data for plotting spiders</td>
+</tr>
+</tbody>
+</table>
+<p>You can check the first few lines of each data frame thus:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(my.plot<span class="op">$</span>df_spiders)</code></pre></div>
+<pre><code>##    Group     cntr.x       cntr.y          x           y
+## 2     BF -0.1995202  0.009619176 -0.1970059 -0.16455540
+## 10    BF -0.1995202  0.009619176 -0.2505024  0.06096196
+## 11    BF -0.1995202  0.009619176 -0.1510522  0.13245097
+## 5     HF -0.1070437 -0.041316511 -0.2532165  0.02333147
+## 6     HF -0.1070437 -0.041316511 -0.2152557  0.09089893
+## 7     HF -0.1070437 -0.041316511 -0.2497939  0.03067965</code></pre>
+<p>The <code>ggplot2</code> statements I used for each layer are:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Basic ordination plot:</span>
+xlab &lt;-<span class="st"> </span><span class="kw">paste</span>(<span class="st">&quot;Axis&quot;</span>, choices[<span class="dv">1</span>], <span class="dt">sep =</span> <span class="st">&quot; &quot;</span>)
+ylab &lt;-<span class="st"> </span><span class="kw">paste</span>(<span class="st">&quot;Axis&quot;</span>, choices[<span class="dv">2</span>], <span class="dt">sep =</span> <span class="st">&quot; &quot;</span>)
+<span class="kw">geom_point</span>(<span class="dt">data =</span> df_ord, <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y, <span class="dt">color =</span> Group), <span class="dt">size =</span> <span class="dv">3</span>) <span class="op">+</span><span class="st"> </span><span class="kw">xlab</span>(xlab) <span class="op">+</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">ylab</span>(ylab)
+
+<span class="co"># Plot ellispes:</span>
+<span class="kw">geom_path</span>(<span class="dt">data =</span> df_ellipse, <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y, <span class="dt">color =</span> Group), <span class="dt">show.legend =</span> <span class="ot">FALSE</span>)
+
+<span class="co"># Plot centroid labels:</span>
+<span class="kw">geom_text</span>(<span class="dt">data =</span> df_mean.ord, <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y, <span class="dt">label =</span> Group, <span class="dt">color =</span> Group), 
+    <span class="dt">show.legend =</span> <span class="ot">FALSE</span>)
+
+<span class="co"># Plot hulls:</span>
+<span class="kw">geom_path</span>(<span class="dt">data =</span> df_hull, <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y, <span class="dt">color =</span> Group), <span class="dt">show.legend =</span> <span class="ot">FALSE</span>)
+
+<span class="co"># Plot spiders:</span>
+<span class="kw">geom_segment</span>(<span class="dt">data =</span> df_spiders, <span class="kw">aes</span>(<span class="dt">x =</span> cntr.x, <span class="dt">xend =</span> x, <span class="dt">y =</span> cntr.y, <span class="dt">yend =</span> y, 
+    <span class="dt">color =</span> Group), <span class="dt">show.legend =</span> <span class="ot">FALSE</span>)
+
+<span class="co"># Plot cluster segments:</span>
+<span class="kw">geom_segment</span>(<span class="dt">data =</span> df_segments, <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y, <span class="dt">xend =</span> xend, <span class="dt">yend =</span> yend))</code></pre></div>
+<p>With the above information and some knowledge of <code>ggplot2</code> you can modify the plots however you wish. And to learn more, you can inspect the code by entering <code>gg_ordiplot</code> or any other function written in R (i.e. not compiled) without parentheses. As a short example, the hidden function in <code>vegan</code> for generating data for an ellipse is:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">vegan<span class="op">:::</span>veganCovEllipse</code></pre></div>
+<pre><code>## function (cov, center = c(0, 0), scale = 1, npoints = 100) 
+## {
+##     theta &lt;- (0:npoints) * 2 * pi/npoints
+##     Circle &lt;- cbind(cos(theta), sin(theta))
+##     Q &lt;- chol(cov, pivot = TRUE)
+##     o &lt;- attr(Q, &quot;pivot&quot;)
+##     t(center + scale * t(Circle %*% Q[, o]))
+## }
+## &lt;environment: namespace:vegan&gt;</code></pre>
+</div>
+<div id="examples" class="section level1">
+<h1>Examples</h1>
+<p>Say you want to make an ordination plot with points distinguished by two variables assigned to symbol shape and symbol color. You can do this by extracting <code>df_ord</code> from a plot result and adding a second grouping variable. Continuing with the example from above:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ord.data &lt;-<span class="st"> </span>my.plot<span class="op">$</span>df_ord
+<span class="kw">head</span>(ord.data)</code></pre></div>
+<pre><code>##             x           y Group
+## 1 -0.23409791 -0.19110003    SF
+## 2 -0.19700590 -0.16455540    BF
+## 3 -0.04472727 -0.24679380    SF
+## 4 -0.02267027 -0.22032168    SF
+## 5 -0.25321647  0.02333147    HF
+## 6 -0.21525573  0.09089893    HF</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ord.data<span class="op">$</span>Use &lt;-<span class="st"> </span>dune.env<span class="op">$</span>Use
+<span class="kw">colnames</span>(ord.data) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;x&quot;</span>, <span class="st">&quot;y&quot;</span>, <span class="st">&quot;Management&quot;</span>, <span class="st">&quot;Use&quot;</span>)
+<span class="kw">head</span>(ord.data)</code></pre></div>
+<pre><code>##             x           y Management      Use
+## 1 -0.23409791 -0.19110003         SF Haypastu
+## 2 -0.19700590 -0.16455540         BF Haypastu
+## 3 -0.04472727 -0.24679380         SF Haypastu
+## 4 -0.02267027 -0.22032168         SF Haypastu
+## 5 -0.25321647  0.02333147         HF Hayfield
+## 6 -0.21525573  0.09089893         HF Haypastu</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> ord.data, <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y, <span class="dt">color =</span> Management, <span class="dt">shape =</span> Use)) <span class="op">+</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">3</span>) <span class="op">+</span><span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;PCA 1&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;PCA 2&quot;</span>)</code></pre></div>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
+<p>As long as you start from the same data, you can take plots and data frames generated with different functions and combine them in new ways. For example, add a dendrogram to an ellipse plot.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(<span class="st">&quot;dune&quot;</span>)
+<span class="kw">data</span>(<span class="st">&quot;dune.env&quot;</span>)
+dune.bray &lt;-<span class="st"> </span><span class="kw">vegdist</span>(dune, <span class="dt">method =</span> <span class="st">&quot;bray&quot;</span>)
+ord &lt;-<span class="st"> </span><span class="kw">cmdscale</span>(dune.bray, <span class="dt">k =</span> <span class="kw">nrow</span>(dune) <span class="op">-</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">eig =</span> <span class="ot">TRUE</span>, <span class="dt">add =</span> <span class="ot">TRUE</span>)
+cl &lt;-<span class="st"> </span><span class="kw">hclust</span>(dune.bray, <span class="dt">method =</span> <span class="st">&quot;single&quot;</span>)
+clstr.plot &lt;-<span class="st"> </span><span class="kw">gg_ordicluster</span>(ord, <span class="dt">cluster =</span> cl, <span class="dt">plot =</span> <span class="ot">FALSE</span>)
+ellipse.plot &lt;-<span class="st"> </span><span class="kw">gg_ordiplot</span>(ord, <span class="dt">groups =</span> dune.env<span class="op">$</span>Management, <span class="dt">plot =</span> <span class="ot">FALSE</span>)
+ellipse.plot<span class="op">$</span>plot <span class="op">+</span><span class="st"> </span><span class="kw">geom_segment</span>(<span class="dt">data =</span> clstr.plot<span class="op">$</span>df_segments, <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y, 
+    <span class="dt">xend =</span> xend, <span class="dt">yend =</span> yend))</code></pre></div>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
+<p>Enjoy!</p>
+</div>
+
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
