@@ -36,7 +36,7 @@ gg_envfit(ord, env, groups = NA, scaling = 1, choices = c(1, 2),
 \item{plot}{A logical for plotting; defaults to TRUE.}
 }
 \value{
-Silently returns the plot and data frames used for the plotting.
+Silently returns the plot and data frames used for the plotting if the fit of any variable is significant at alpha. Otherwise returns a message that no variable is significant.
 }
 \description{
 Fits environmental parameters to an ordination plot of sites

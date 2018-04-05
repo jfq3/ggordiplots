@@ -17,7 +17,7 @@
 #' @param pt.size Symbol size.
 #' @param plot A logical for plotting; defaults to TRUE.
 #'
-#' @return Silently returns the plot and data frames used for the plotting.
+#' @return Silently returns the plot and data frames used for the plotting if the fit of any variable is significant at alpha. Otherwise returns a message that no variable is significant.
 #' @export
 #' @import vegan
 #' @import ggplot2
@@ -38,39 +38,43 @@ gg_envfit <- function(ord, env, groups=NA, scaling = 1, choices=c(1,2), perm = 9
     df_ord <- df_ord[ , c(3,1,2)]
     colnames(df_ord) <- c("Group", "x", "y")
   } else{
-      colnames(df_ord) <- c("x", "y")
+    colnames(df_ord) <- c("x", "y")
   }
-
   fit <- vegan::envfit(ord, env, choices = choices, perm = perm)
-  df_arrows <- as.data.frame(scores(fit, "vectors"))
-  mult <- vegan:::ordiArrowMul(fit)
-  df_arrows <- mult * df_arrows
-  df_arrows$var <- rownames(df_arrows)
-  df_arrows$p.val <- fit$vectors$pvals
-  colnames(df_arrows) <- c("x", "y", "var", "p.val")
-  df_arrows <- df_arrows[df_arrows$p.val<=alpha, ]
+  if (min(fit$vectors$pvals) > alpha) {
+    print(paste("No variable significant at alpha <=", as.character(alpha), sep = " "))
+  } else {
+    df_arrows <- as.data.frame(scores(fit, "vectors"))
+    mult <- vegan:::ordiArrowMul(fit)
+    df_arrows <- mult * df_arrows
+    df_arrows$var <- rownames(df_arrows)
+    df_arrows$p.val <- fit$vectors$pvals
+    colnames(df_arrows) <- c("x", "y", "var", "p.val")
+    df_arrows <- df_arrows[df_arrows$p.val<=alpha, ]
 
-  xlab <- axis.labels[1]
-  ylab <- axis.labels[2]
+    xlab <- axis.labels[1]
+    ylab <- axis.labels[2]
 
-  if (is.na(groups[1])) {
-    plt <- ggplot(data=df_ord, aes(x=x, y=y)) + geom_point(size=pt.size) +
-      xlab(xlab) + ylab(ylab)
+    if (is.na(groups[1])) {
+      plt <- ggplot(data=df_ord, aes(x=x, y=y)) + geom_point(size=pt.size) +
+        xlab(xlab) + ylab(ylab)
+    }
+    else {
+      plt <- ggplot(data=df_ord, aes(x=x, y=y, color=Group)) + geom_point(size=pt.size) +
+        xlab(xlab) + ylab(ylab)
+    }
+    plt <- plt +
+      geom_segment(data=df_arrows, aes(x=0, xend=x, y=0, yend=y),
+                   arrow=arrow(angle=angle, length=unit(len, unit)), color=arrow.col) +
+      geom_text(data=df_arrows, aes(x=x, y=y, label=var), color=arrow.col, hjust="outward")
+
+    plt <- plt + coord_fixed(ratio=1)
+
+    # Plot?
+    if (plot) {print(plt)}
+
+    # Return data frames, plot as a list.
+    invisible(list(df_ord=df_ord, df_arrows=df_arrows, plot=plt))
   }
-  else {
-    plt <- ggplot(data=df_ord, aes(x=x, y=y, color=Group)) + geom_point(size=pt.size) +
-      xlab(xlab) + ylab(ylab)
-  }
-  plt <- plt +
-    geom_segment(data=df_arrows, aes(x=0, xend=x, y=0, yend=y),
-                 arrow=arrow(angle=angle, length=unit(len, unit)), color=arrow.col) +
-    geom_text(data=df_arrows, aes(x=x, y=y, label=var), color=arrow.col, hjust="outward")
 
-  plt <- plt + coord_fixed(ratio=1)
-
-  # Plot?
-  if (plot) {print(plt)}
-
-  # Return data frames, plot as a list.
-  invisible(list(df_ord=df_ord, df_arrows=df_arrows, plot=plt))
 }
