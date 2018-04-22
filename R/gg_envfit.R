@@ -45,7 +45,7 @@ gg_envfit <- function(ord, env, groups=NA, scaling = 1, choices=c(1,2), perm = 9
     print(paste("No variable significant at alpha <=", as.character(alpha), sep = " "))
   } else {
     df_arrows <- as.data.frame(scores(fit, "vectors"))
-    mult <- vegan:::ordiArrowMul(fit)
+    mult <- scale_arrow(df_arrows, df_ord[ , c("x", "y")])
     df_arrows <- mult * df_arrows
     df_arrows$var <- rownames(df_arrows)
     df_arrows$p.val <- fit$vectors$pvals
