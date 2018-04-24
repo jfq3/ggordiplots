@@ -2,18 +2,21 @@
 % Please edit documentation in R/scale_arrow.R
 \name{scale_arrow}
 \alias{scale_arrow}
-\title{scale arrows to plot}
+\title{Scale Arrows to Plot}
 \usage{
 scale_arrow(arrows, data, at = c(0, 0), fill = 0.75)
 }
 \arguments{
-\item{arrows}{A dataframe with two columns giving coordinates from envfit result.}
+\item{arrows}{A two column data frame of coordinates from envfit result.}
 
-\item{data}{A two column mata frame giving coordinates extracted from ordination with vegan scores function.}
+\item{data}{A two column data frame of coordinates for ordination plot.}
 }
 \value{
-Silently returns a scaled data fram for plottin arrows.
+Silently returns a data frame of scaled coordinates for adding arrows to ordination plot.
 }
 \description{
 Scales envfit arrows to fit within 75% of ordination plot dimendions.
+}
+\author{
+Gavin Simpson
 }

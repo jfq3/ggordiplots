@@ -1,14 +1,16 @@
-#' scale arrows to plot
+#' Scale Arrows to Plot
 #'
 #' Scales envfit arrows to fit within 75% of ordination plot dimendions.
 #'
-#' @param arrows A dataframe with two columns giving coordinates from envfit result.
-#' @param  data A two column mata frame giving coordinates extracted from ordination with vegan scores function.
+#' @param arrows A two column data frame of coordinates from envfit result.
+#' @param  data A two column data frame of coordinates for ordination plot.
 #'
-#' @return Silently returns a scaled data fram for plottin arrows.
+#' @return Silently returns a data frame of scaled coordinates for adding arrows to ordination plot.
 #'
 #' @import vegan
 #' @import ggplot2
+#'
+#' @author Gavin Simpson
 #'
 scale_arrow <- function(arrows, data, at = c(0, 0), fill = 0.75) {
   u <- c(range(data[,1], range(data[,2])))
