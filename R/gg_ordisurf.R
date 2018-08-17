@@ -19,6 +19,8 @@
 #' @import ggplot2
 #' @import vegan
 #' @importFrom stats na.omit
+#' @importFrom grDevices rgb
+#' @importFrom stats var
 #'
 #' @note Code for extracting plot data from the ordisurf result was taken from a blog by Oliviea Rata Burge.
 #' @author Olivia Rata Burge, John Quensen
