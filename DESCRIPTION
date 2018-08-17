@@ -1,7 +1,7 @@
 Package: ggordiplots
 Type: Package
 Title: Make ggplot Versions of Vegan's Ordiplots
-Version: 0.2.7
+Version: 0.2.8
 Author: John Quensen
 Maintainer: John Quensen <quensenj@msu.edu>
 Description: The vegan package includes several functions for adding
@@ -11,14 +11,15 @@ Description: The vegan package includes several functions for adding
 License: GPL-2
 Encoding: UTF-8
 LazyData: true
-Depends: ggplot2,
-    vegan,
-    formatR,
-    R (>= 3.2.0)
-RoxygenNote: 6.0.1
+Depends: R (>= 3.2.0),
+	ggplot2 (>= 3.0.0),
+	vegan (>= 2.5-2),
+	formatR (>= 1.5),
+	permute,
+	lattice
 Suggests: knitr,
     rmarkdown
 VignetteBuilder: knitr
 URL: http://github.com/jfq2/ggordiplots
 BugReports: http://github.com/jfq2/ggordiplots/issues
-
+RoxygenNote: 6.1.0
