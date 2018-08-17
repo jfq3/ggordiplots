@@ -14,11 +14,11 @@ LazyData: true
 Depends: R (>= 3.2.0),
 	ggplot2 (>= 3.0.0),
 	vegan (>= 2.5-2),
-	formatR (>= 1.5),
+Suggests: formatR,
 	permute,
-	lattice
-Suggests: knitr,
-    rmarkdown
+	lattice,
+  knitr,
+  rmarkdown
 VignetteBuilder: knitr
 URL: http://github.com/jfq2/ggordiplots
 BugReports: http://github.com/jfq2/ggordiplots/issues
