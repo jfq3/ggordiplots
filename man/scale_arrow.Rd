@@ -13,7 +13,7 @@ scale_arrow(arrows, data, at = c(0, 0), fill = 0.75)
 
 \item{at}{coordinates of origin (0, 0)}
 
-\item{proportion}{of plot area to fill with maximum arrow length}
+\item{fill}{proportion of plot area to fill with maximum arrow length}
 }
 \value{
 Silently returns a data frame of scaled coordinates for adding arrows to ordination plot.

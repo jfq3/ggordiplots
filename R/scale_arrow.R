@@ -5,7 +5,7 @@
 #' @param arrows A two column data frame of coordinates from envfit result.
 #' @param  data A two column data frame of coordinates for ordination plot.
 #' @param at coordinates of origin (0, 0)
-#' @param proportion of plot area to fill with maximum arrow length
+#' @param fill proportion of plot area to fill with maximum arrow length
 #'
 #' @return Silently returns a data frame of scaled coordinates for adding arrows to ordination plot.
 #'
