@@ -4,10 +4,10 @@
 \alias{gg_ordiplot}
 \title{Plot with Ellipses, Hulls, Spiders}
 \usage{
-gg_ordiplot(ord, groups, scaling = 1, choices = c(1, 2), kind = c("sd",
-  "se", "ehull"), conf = NULL, show.groups = "all", ellipse = TRUE,
-  label = FALSE, hull = FALSE, spiders = FALSE, pt.size = 3,
-  plot = TRUE)
+gg_ordiplot(ord, groups, scaling = 1, choices = c(1, 2),
+  kind = c("sd", "se", "ehull"), conf = NULL, show.groups = "all",
+  ellipse = TRUE, label = FALSE, hull = FALSE, spiders = FALSE,
+  pt.size = 3, plot = TRUE)
 }
 \arguments{
 \item{ord}{An ordination object.}

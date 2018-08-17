@@ -4,8 +4,8 @@
 \alias{gg_ordisurf}
 \title{Ordisurf with ggplot2}
 \usage{
-gg_ordisurf(ord, env.var, choices = c(1, 2), var.label = "Level", binwidth,
-  pt.size = 3, plot = TRUE)
+gg_ordisurf(ord, env.var, choices = c(1, 2), var.label = "Level",
+  binwidth, pt.size = 3, plot = TRUE)
 }
 \arguments{
 \item{ord}{An ordination object.}
