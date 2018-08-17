@@ -10,6 +10,10 @@ scale_arrow(arrows, data, at = c(0, 0), fill = 0.75)
 \item{arrows}{A two column data frame of coordinates from envfit result.}
 
 \item{data}{A two column data frame of coordinates for ordination plot.}
+
+\item{at}{coordinates of origin (0, 0)}
+
+\item{proportion}{of plot area to fill with maximum arrow length}
 }
 \value{
 Silently returns a data frame of scaled coordinates for adding arrows to ordination plot.
