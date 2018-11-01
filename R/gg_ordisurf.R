@@ -42,10 +42,10 @@ gg_ordisurf <- function(ord, env.var, choices=c(1,2), var.label="Level", binwidt
 
   # Extract site coordinates for plotting.
   df_ord <- as.data.frame(scores(ord, choices = choices, display = "sites"))
-  axis.labels <- colnames(df_ord)
   colnames(df_ord) <- c("x", "y")
 
   # Make axis labels.
+  axis.labels <- ord_labels(ord)[choices]
   xlab <- axis.labels[1]
   ylab <- axis.labels[2]
 

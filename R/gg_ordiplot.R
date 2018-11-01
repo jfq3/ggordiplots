@@ -40,7 +40,7 @@ gg_ordiplot <- function(ord, groups, scaling = 1, choices = c(1,2), kind = c("sd
 
   # Get site coordinates to plot.
   df_ord <- vegan::scores(ord, display = "sites", scaling=scaling, choices=choices)
-  axis.labels <- colnames(df_ord)
+  axis.labels <- ord_labels(ord)[choices]
   df_ord <- data.frame(x=df_ord[ , 1], y=df_ord[ , 2], Group=groups)
 
   # Get ellipse centers to annotate.

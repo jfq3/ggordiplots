@@ -32,7 +32,7 @@
 gg_envfit <- function(ord, env, groups=NA, scaling = 1, choices=c(1,2), perm = 999, alpha = 0.05, angle=20, len=0.5, unit="cm", arrow.col="red", pt.size=3, plot=TRUE) {
   df_ord <- vegan::scores(ord, display = "sites", choices = choices, scaling = scaling)
   df_ord <- as.data.frame(df_ord)
-  axis.labels <- colnames(df_ord)
+  axis.labels <- ord_labels(ord)[choices]
   if (!is.na(groups[1])) {
     df_ord$Group <- groups
     df_ord <- df_ord[ , c(3,1,2)]

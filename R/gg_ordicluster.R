@@ -116,7 +116,7 @@ gg_ordicluster <- function (ord, cluster, treatments=NA, choices=c(1,2), prune =
   df_segments <- temp2
 
   df_ord <- as.data.frame(ord.scores)
-  axis.labels <- colnames(df_ord)
+  axis.labels <- ord_labels(ord)[choices]
   df_ord$Treatment <- treatments
   colnames(df_ord) <- c("x", "y", "Treatment")
 

@@ -24,7 +24,7 @@
 #'
 gg_ordibubble <- function(ord, env.var, var.label="Level", choices=c(1,2), plot=TRUE) {
   df_ord <- as.data.frame(vegan::scores(ord, display="sites", choices=choices))
-  axis.labels <- colnames(df_ord)
+  axis.labels <- ord_labels(ord)[choices]
   df_ord$var <- env.var
   xlab <- axis.labels[1]
   ylab <- axis.labels[2]
