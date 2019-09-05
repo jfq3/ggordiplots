@@ -2,6 +2,7 @@ Package: ggordiplots
 Type: Package
 Title: Make ggplot Versions of Vegan's Ordiplots
 Version: 0.3.0
+Date: 2018-11-29
 Author: John Quensen
 Maintainer: John Quensen <quensenj@msu.edu>
 Description: The vegan package includes several functions for adding
@@ -20,6 +21,6 @@ Suggests: formatR,
   knitr,
   rmarkdown
 VignetteBuilder: knitr
-URL: http://github.com/jfq2/ggordiplots
-BugReports: http://github.com/jfq2/ggordiplots/issues
+URL: http://github.com/jfq3/ggordiplots
+BugReports: http://github.com/jfq3/ggordiplots/issues
 RoxygenNote: 6.1.0
