@@ -15,7 +15,7 @@
 ord_labels <-
   function(ord){
     ev <- vegan::eigenvals(ord)
-    if (!is.na(ev)) {
+    if (!is.na(ev)[1]) {
       tol <- -(1e-07)*ev[1]
       ord.labels <- rep("", length(ev))
       if ((any(is.na(ev))) | (any(ev < tol))) {
