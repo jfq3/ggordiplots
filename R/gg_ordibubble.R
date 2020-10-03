@@ -40,6 +40,12 @@ gg_ordibubble <- function(ord, env.var, groups="", var.label="Level", choices=c(
     labs(size=var.label) +
     coord_fixed(ratio=1)
 
+  if (length(groups)==1) {
+    plt <- plt +
+      guides(color=FALSE) +
+      scale_color_manual(values="black")
+  }
+
   # Plot?
   if (plot) {print(plt)}
 
