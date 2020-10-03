@@ -7,6 +7,7 @@
 gg_ordibubble(
   ord,
   env.var,
+  groups = "",
   var.label = "Level",
   choices = c(1, 2),
   plot = TRUE
@@ -16,6 +17,8 @@ gg_ordibubble(
 \item{ord}{An ordination object}
 
 \item{env.var}{An environmental variable.}
+
+\item{groups}{A vector of groups (optional).}
 
 \item{var.label}{Label for the legend; default is "Level."}
 

@@ -7,7 +7,7 @@
 gg_ordisurf(
   ord,
   env.var,
-  groups,
+  groups = "",
   choices = c(1, 2),
   var.label = "Level",
   binwidth,
@@ -20,11 +20,11 @@ gg_ordisurf(
 
 \item{env.var}{Environmental variable to fit to plot.}
 
-\item{groups}{A vector of groups.}
+\item{groups}{A vector of groups (optional).}
 
 \item{choices}{Axes to plot.}
 
-\item{var.label}{Label for the legend; default is "Level."}
+\item{var.label}{Label for the contour legend; default is "Level."}
 
 \item{binwidth}{Controls the number of contours in the plot.}
 
@@ -41,6 +41,8 @@ to an ordination plot.
 }
 \details{
 By default, `binwidth` is calculated as the difference between minimum and maximum values of the variable divided by 15.
+
+The colors for the points are mapped to fill; if you want to rename the legend for the groups (points), use labs(fill="New name").
 }
 \note{
 Code for extracting plot data from the ordisurf result was taken from a blog by Oliviea Rata Burge.

@@ -1,8 +1,8 @@
 Package: ggordiplots
 Type: Package
 Title: Make ggplot Versions of Vegan's Ordiplots
-Version: 0.3.0
-Date: 2018-11-29
+Version: 0.4.0
+Date: 2020-10-03
 Author: John Quensen
 Maintainer: John Quensen <quensenj@msu.edu>
 Description: The vegan package includes several functions for adding
@@ -15,6 +15,7 @@ LazyData: true
 Depends: R (>= 3.2.0),
 	ggplot2 (>= 3.0.0),
 	vegan (>= 2.5-2),
+	glue
 Suggests: formatR,
 	permute,
 	lattice,
