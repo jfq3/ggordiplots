@@ -8,7 +8,7 @@
 #'
 #' @details If there are no eigenvalues in ord, or if any eigenvalues are less than 0, each element of the vector returned has the form "DIMn" where n is the axis number. Otherwise, each element of the vector returned has the form "AxisN xx.x\%" where "Axis" is taken from the vector of eigenvalues in ord if they are named or simply "DIM" if they are not, N is the number of the axis, and xx.x is the \% of total variance explained by the axis.
 #'
-#'
+#' @export
 #' @examples
 #'
 #'

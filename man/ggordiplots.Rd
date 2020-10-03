@@ -3,7 +3,6 @@
 \docType{package}
 \name{ggordiplots}
 \alias{ggordiplots}
-\alias{ggordiplots-package}
 \title{ggordiplots: Make ggplots with ordiplot-type features.}
 \description{
 The vegan and BiodiversityR packages include several functions

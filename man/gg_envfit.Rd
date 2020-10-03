@@ -4,9 +4,21 @@
 \alias{gg_envfit}
 \title{Vegan envfit plot}
 \usage{
-gg_envfit(ord, env, groups = NA, scaling = 1, choices = c(1, 2),
-  perm = 999, alpha = 0.05, angle = 20, len = 0.5, unit = "cm",
-  arrow.col = "red", pt.size = 3, plot = TRUE)
+gg_envfit(
+  ord,
+  env,
+  groups = NA,
+  scaling = 1,
+  choices = c(1, 2),
+  perm = 999,
+  alpha = 0.05,
+  angle = 20,
+  len = 0.5,
+  unit = "cm",
+  arrow.col = "red",
+  pt.size = 3,
+  plot = TRUE
+)
 }
 \arguments{
 \item{ord}{An ordination object.}

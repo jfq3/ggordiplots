@@ -23,4 +23,4 @@ Suggests: formatR,
 VignetteBuilder: knitr
 URL: http://github.com/jfq3/ggordiplots
 BugReports: http://github.com/jfq3/ggordiplots/issues
-RoxygenNote: 6.1.0
+RoxygenNote: 7.1.1

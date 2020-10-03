@@ -5,6 +5,7 @@
 #'
 #' @param ord An ordination object.
 #' @param env.var Environmental variable to fit to plot.
+#' @param groups A vector of groups.
 #' @param choices Axes to plot.
 #' @param var.label Label for the legend; default is "Level."
 #' @param binwidth Controls the number of contours in the plot.
@@ -32,7 +33,7 @@
 #' vare.mds <- monoMDS(vare.dist)
 #' gg_ordisurf(vare.mds, env.var = varechem$Baresoil, var.label="Bare Soil")
 
-gg_ordisurf <- function(ord, env.var, choices=c(1,2), var.label="Level", binwidth, pt.size = 3, plot=TRUE) {
+gg_ordisurf <- function(ord, env.var, groups, choices=c(1,2), var.label="Level", binwidth, pt.size = 3, plot=TRUE) {
   # Extract ordisurf data for plotting
   ordi <- vegan::ordisurf(ord ~ env.var, plot=FALSE) #created the ordisurf object
   ordi.grid <- ordi$grid #extracts the ordisurf object
@@ -42,7 +43,9 @@ gg_ordisurf <- function(ord, env.var, choices=c(1,2), var.label="Level", binwidt
 
   # Extract site coordinates for plotting.
   df_ord <- as.data.frame(scores(ord, choices = choices, display = "sites"))
-  colnames(df_ord) <- c("x", "y")
+  axis.labels <- ord_labels(ord)[choices]
+  df_ord <- data.frame(x=df_ord[ , 1], y=df_ord[ , 2], Group=groups)
+  # colnames(df_ord) <- c("x", "y")
 
   # Make axis labels.
   axis.labels <- ord_labels(ord)[choices]
@@ -56,7 +59,7 @@ gg_ordisurf <- function(ord, env.var, choices=c(1,2), var.label="Level", binwidt
   }
 
   ## Plotting in ggplot2
-  plt <- ggplot(data=df_ord, aes(x=x, y=y)) + geom_point(size = pt.size) +
+  plt <- ggplot(data=df_ord, aes(x=x, y=y, color = Group)) + geom_point(size = pt.size) +
 
     xlab(xlab) + ylab(ylab) +
     stat_contour(data = df_surf, aes(x=x, y=y, z=z, color= ..level..), binwidth=binwidth) +

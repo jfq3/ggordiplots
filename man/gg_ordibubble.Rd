@@ -4,8 +4,13 @@
 \alias{gg_ordibubble}
 \title{Ordination Bubble Plot}
 \usage{
-gg_ordibubble(ord, env.var, var.label = "Level", choices = c(1, 2),
-  plot = TRUE)
+gg_ordibubble(
+  ord,
+  env.var,
+  var.label = "Level",
+  choices = c(1, 2),
+  plot = TRUE
+)
 }
 \arguments{
 \item{ord}{An ordination object}
