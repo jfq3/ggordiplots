@@ -72,7 +72,7 @@ gg_ordisurf <- function(ord, env.var, groups="", choices=c(1,2), var.label="Leve
   if (length(groups)==1) {
     plt <- plt +
       guides(fill=FALSE) +
-      scale_color_manual(values="black")
+      scale_fill_manual(values="black")
   }
   #can change the binwidth depending on how many contours you want
 
