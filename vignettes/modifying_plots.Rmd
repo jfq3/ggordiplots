@@ -5,8 +5,10 @@ date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Modifying Plots Made with ggordiplots}
-  %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  chunk_output_type: console
 ---
 # Introduction
 
@@ -59,7 +61,7 @@ ylab <- paste("Axis", choices[2], sep = " ")
 geom_point(data=df_ord, aes(x=x, y=y, color=Group), size=3) +
     xlab(xlab) + ylab(ylab)
 
-# Plot ellispes:
+# Plot ellipses:
 geom_path(data = df_ellipse, aes(x=x, y=y, color=Group), show.legend = FALSE)
 
 # Plot centroid labels:
