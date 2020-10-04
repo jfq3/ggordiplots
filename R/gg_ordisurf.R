@@ -70,7 +70,9 @@ gg_ordisurf <- function(ord, env.var, groups="", choices=c(1,2), var.label="Leve
     labs(color=var.label) +
     coord_fixed(ratio=1)
   if (length(groups)==1) {
-    plt <- plt + guides(fill=FALSE)
+    plt <- plt +
+      guides(fill=FALSE) +
+      scale_color_manual(values="black")
   }
   #can change the binwidth depending on how many contours you want
 
