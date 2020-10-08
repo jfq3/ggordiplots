@@ -7,7 +7,7 @@
 gg_ordibubble(
   ord,
   env.var,
-  groups = "",
+  groups = NA,
   var.label = "Level",
   choices = c(1, 2),
   plot = TRUE

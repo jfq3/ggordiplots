@@ -23,28 +23,46 @@
 #' ord <- cmdscale(dune.bray, k=(nrow(dune)-1), eig=TRUE, add=TRUE)
 #' gg_ordibubble(ord, env.var=dune.env$A1, var.label="A1")
 #'
-gg_ordibubble <- function(ord, env.var, groups="", var.label="Level", choices=c(1,2), plot=TRUE) {
+gg_ordibubble <- function(ord, env.var, groups=NA, var.label="Level", choices=c(1,2), plot=TRUE) {
   df_ord <- as.data.frame(vegan::scores(ord, display="sites", choices=choices))
-  df_ord$Group <- as.factor(groups)
-  df_ord$var <- env.var
-  colnames(df_ord) <- c("x", "y", "Group", var.label)
 
   axis.labels <- ord_labels(ord)[choices]
   xlab <- axis.labels[1]
   ylab <- axis.labels[2]
 
-  plt <- ggplot(data=df_ord, aes(x=x, y=y, size=env.var, color=Group)) +
-    geom_point() +
-    xlab(xlab) +
-    ylab(ylab) +
-    labs(size=var.label) +
-    coord_fixed(ratio=1)
-
-  if (length(groups)==1) {
-    plt <- plt +
-      guides(color=FALSE) +
-      scale_color_manual(values="black")
+  if (!is.na(groups)[1]) {
+    df_ord$Group <- as.factor(groups)
+    df_ord$var <- env.var
+    colnames(df_ord) <- c("x", "y", "Group", var.label)
+    plt <- ggplot(data=df_ord, aes(x=x, y=y, size=env.var, color=Group)) +
+      geom_point() +
+      xlab(xlab) +
+      ylab(ylab) +
+      labs(size=var.label) +
+      coord_fixed(ratio=1)
+  } else {
+    df_ord$var <- env.var
+    colnames(df_ord) <- c("x", "y", var.label)
+    plt <- ggplot(data=df_ord, aes(x=x, y=y, size=env.var)) +
+      geom_point() +
+      xlab(xlab) +
+      ylab(ylab) +
+      labs(size=var.label) +
+      coord_fixed(ratio=1)
   }
+
+  # plt <- ggplot(data=df_ord, aes(x=x, y=y, size=env.var, color=Group)) +
+  #   geom_point() +
+  #   xlab(xlab) +
+  #   ylab(ylab) +
+  #   labs(size=var.label) +
+  #   coord_fixed(ratio=1)
+  #
+  # if (length(groups)==1) {
+  #   plt <- plt +
+  #     guides(color=FALSE) +
+  #     scale_color_manual(values="black")
+  # }
 
   # Plot?
   if (plot) {print(plt)}

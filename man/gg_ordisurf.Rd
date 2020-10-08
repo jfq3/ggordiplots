@@ -7,7 +7,7 @@
 gg_ordisurf(
   ord,
   env.var,
-  groups = "",
+  groups = NA,
   choices = c(1, 2),
   var.label = "Level",
   binwidth,

@@ -35,7 +35,7 @@
 #' vare.mds <- monoMDS(vare.dist)
 #' gg_ordisurf(vare.mds, env.var = varechem$Baresoil, var.label="Bare Soil")
 
-gg_ordisurf <- function(ord, env.var, groups="", choices=c(1,2), var.label="Level", binwidth, pt.size=3, plot=TRUE) {
+gg_ordisurf <- function(ord, env.var, groups=NA, choices=c(1,2), var.label="Level", binwidth, pt.size=3, plot=TRUE) {
 
   groups <- as.factor(groups)
 
@@ -48,7 +48,11 @@ gg_ordisurf <- function(ord, env.var, groups="", choices=c(1,2), var.label="Leve
 
   # Extract site coordinates for plotting.
   df_ord <- as.data.frame(scores(ord, choices = choices, display = "sites"))
-  df_ord <- data.frame(x=df_ord[ , 1], y=df_ord[ , 2], Group=groups)
+  if (is.na(groups)[1]) {
+    df_ord <- data.frame(x=df_ord[ , 1], y=df_ord[ , 2])
+  } else {
+    df_ord <- data.frame(x=df_ord[ , 1], y=df_ord[ , 2], Group=groups)
+  }
 
   # Make axis labels.
   axis.labels <- ord_labels(ord)[choices]
@@ -62,18 +66,33 @@ gg_ordisurf <- function(ord, env.var, groups="", choices=c(1,2), var.label="Leve
   }
 
   ## Plotting in ggplot2
-  plt <- ggplot() +
-    # geom_point(data=df_ord, aes(x=x, y=y, shape = Group), size=pt.size) +
-    geom_point(data=df_ord, aes(x=x, y=y, fill=Group), shape=21, color="#00000000", size=pt.size) +
-    xlab(xlab) + ylab(ylab) +
-    stat_contour(data=df_surf, aes(x=x, y=y, z=z, color= ..level..), binwidth=binwidth) +
-    labs(color=var.label) +
-    coord_fixed(ratio=1)
-  if (length(groups)==1) {
-    plt <- plt +
-      guides(fill=FALSE) +
-      scale_fill_manual(values="black")
+  if (is.na(groups)[1]) {
+    plt <- ggplot() +
+      geom_point(data=df_ord, aes(x=x, y=y), size=pt.size) +
+      xlab(xlab) + ylab(ylab) +
+      stat_contour(data=df_surf, aes(x=x, y=y, z=z, color= ..level..), binwidth=binwidth) +
+      labs(color=var.label) +
+      coord_fixed(ratio=1)
+  } else {
+    plt <- ggplot() +
+      geom_point(data=df_ord, aes(x=x, y=y, fill=Group), shape=21, color="#00000000", size=pt.size) +
+      xlab(xlab) + ylab(ylab) +
+      stat_contour(data=df_surf, aes(x=x, y=y, z=z, color= ..level..), binwidth=binwidth) +
+      labs(color=var.label) +
+      coord_fixed(ratio=1)
   }
+  # plt <- ggplot() +
+  #   # geom_point(data=df_ord, aes(x=x, y=y, shape = Group), size=pt.size) +
+  #   geom_point(data=df_ord, aes(x=x, y=y, fill=Group), shape=21, color="#00000000", size=pt.size) +
+  #   xlab(xlab) + ylab(ylab) +
+  #   stat_contour(data=df_surf, aes(x=x, y=y, z=z, color= ..level..), binwidth=binwidth) +
+  #   labs(color=var.label) +
+  #   coord_fixed(ratio=1)
+  # if (length(groups)==1) {
+  #   plt <- plt +
+  #     guides(fill=FALSE) +
+  #     scale_fill_manual(values="black")
+  # }
   #can change the binwidth depending on how many contours you want
 
   # Plot?
