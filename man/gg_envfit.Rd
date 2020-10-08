@@ -54,11 +54,25 @@ Silently returns the plot and data frames used for the plotting if the fit of an
 Fits environmental parameters to an ordination plot of sites
 and plots them as arrows.
 }
+\note{
+In order for the arrow tips to be labeled with the names of the variables, they must be supplied as a matrix or data frame. If a single variable is supplied as a vector, the arrow tip will be labeled with "1". A way-around is to convert the vector to a data frame with the column named for the variable.
+}
 \examples{
 data("varespec")
 data("varechem")
 vare.dist <- vegdist(varespec)
 vare.mds <- monoMDS(vare.dist)
 gg_envfit(ord=vare.mds, env=varechem)
+
+data("dune")
+data("dune.env")
+dune.dist <- vegdist(dune)
+dune.mds <- monoMDS(dune.dist)
+# A1 supplied as a vector
+gg_envfit(dune.mds, env=dune.env$A1, groups=dune.env$Management)
+# A1 supplied as a data frame
+A1 <- as.data.frame(dune.env$A1)
+colnames(A1) <- "A1"
+gg_envfit(dune.mds, env=A1, groups=dune.env$Management)
 
 }
