@@ -51,19 +51,6 @@ gg_ordibubble <- function(ord, env.var, groups=NA, var.label="Level", choices=c(
       coord_fixed(ratio=1)
   }
 
-  # plt <- ggplot(data=df_ord, aes(x=x, y=y, size=env.var, color=Group)) +
-  #   geom_point() +
-  #   xlab(xlab) +
-  #   ylab(ylab) +
-  #   labs(size=var.label) +
-  #   coord_fixed(ratio=1)
-  #
-  # if (length(groups)==1) {
-  #   plt <- plt +
-  #     guides(color=FALSE) +
-  #     scale_color_manual(values="black")
-  # }
-
   # Plot?
   if (plot) {print(plt)}
 

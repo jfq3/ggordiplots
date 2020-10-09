@@ -65,7 +65,7 @@ gg_ordisurf <- function(ord, env.var, groups=NA, choices=c(1,2), var.label="Leve
     binwidth <- (r[2]-r[1])/15
   }
 
-  ## Plotting in ggplot2
+  # Plotting in ggplot2
   if (is.na(groups)[1]) {
     plt <- ggplot() +
       geom_point(data=df_ord, aes(x=x, y=y), size=pt.size) +
@@ -81,19 +81,8 @@ gg_ordisurf <- function(ord, env.var, groups=NA, choices=c(1,2), var.label="Leve
       labs(color=var.label) +
       coord_fixed(ratio=1)
   }
-  # plt <- ggplot() +
-  #   # geom_point(data=df_ord, aes(x=x, y=y, shape = Group), size=pt.size) +
-  #   geom_point(data=df_ord, aes(x=x, y=y, fill=Group), shape=21, color="#00000000", size=pt.size) +
-  #   xlab(xlab) + ylab(ylab) +
-  #   stat_contour(data=df_surf, aes(x=x, y=y, z=z, color= ..level..), binwidth=binwidth) +
-  #   labs(color=var.label) +
-  #   coord_fixed(ratio=1)
-  # if (length(groups)==1) {
-  #   plt <- plt +
-  #     guides(fill=FALSE) +
-  #     scale_fill_manual(values="black")
-  # }
-  #can change the binwidth depending on how many contours you want
+
+  # can change the binwidth depending on how many contours you want
 
   # Plot?
   if (plot) {print(plt)}
