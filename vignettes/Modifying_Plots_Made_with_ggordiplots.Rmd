@@ -4,7 +4,7 @@ author: "John Quensen"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Modifying Plots Made with ggordiplots}
+  %\VignetteIndexEntry{modifying_plots}
   %\VignetteEncoding{UTF-8}
   %\VignetteEngine{knitr::rmarkdown}
 editor_options: 
