@@ -10,6 +10,7 @@
 #' @param var.label Label for the contour legend; default is "Level."
 #' @param binwidth Controls the number of contours in the plot.
 #' @param pt.size Symbol size.
+#' @param family Error distribution and link function used by the gam function to fit the contours.
 #' @param plot A logical for plotting; defaults to TRUE.
 #'
 #' @details By default, `binwidth` is calculated as the difference between minimum and maximum values of the variable divided by 15.
@@ -25,6 +26,7 @@
 #' @importFrom grDevices rgb
 #' @importFrom stats var
 #'
+#' @details See the help for stats::family for possible values for family.
 #' @note Code for extracting plot data from the ordisurf result was taken from a blog by Oliviea Rata Burge.
 #' @author Olivia Rata Burge, John Quensen
 #' @references https://oliviarata.wordpress.com/2014/07/17/ordinations-in-ggplot2-v2-ordisurf/'
@@ -35,12 +37,13 @@
 #' vare.mds <- monoMDS(vare.dist)
 #' gg_ordisurf(vare.mds, env.var = varechem$Baresoil, var.label="Bare Soil")
 
-gg_ordisurf <- function(ord, env.var, groups=NA, choices=c(1,2), var.label="Level", binwidth, pt.size=3, plot=TRUE) {
+gg_ordisurf <- function(ord, env.var, groups=NA, choices=c(1,2), var.label="Level",
+                        binwidth, pt.size=3, family = "gaussian", plot=TRUE) {
 
   groups <- as.factor(groups)
 
   # Extract ordisurf data for plotting
-  ordi <- vegan::ordisurf(ord ~ env.var, plot=FALSE) # creates the ordisurf object
+  ordi <- vegan::ordisurf(ord ~ env.var, family = family, plot=FALSE) # creates the ordisurf object
   ordi.grid <- ordi$grid # extracts the ordisurf object
   ordi.data <- expand.grid(x = ordi.grid$x, y = ordi.grid$y) # get x and y
   ordi.data$z <- as.vector(ordi.grid$z) # unravel the matrix for the z scores

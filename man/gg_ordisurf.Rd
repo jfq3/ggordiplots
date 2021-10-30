@@ -12,6 +12,7 @@ gg_ordisurf(
   var.label = "Level",
   binwidth,
   pt.size = 3,
+  family = "gaussian",
   plot = TRUE
 )
 }
@@ -30,6 +31,8 @@ gg_ordisurf(
 
 \item{pt.size}{Symbol size.}
 
+\item{family}{Error distribution and link function used by the gam function to fit the contours.}
+
 \item{plot}{A logical for plotting; defaults to TRUE.}
 }
 \value{
@@ -43,6 +46,8 @@ to an ordination plot.
 By default, `binwidth` is calculated as the difference between minimum and maximum values of the variable divided by 15.
 
 The colors for the points are mapped to fill; if you want to rename the legend for the groups (points), use labs(fill="New name").
+
+See the help for stats::family for possible values for family.
 }
 \note{
 Code for extracting plot data from the ordisurf result was taken from a blog by Oliviea Rata Burge.
