@@ -15,6 +15,7 @@
 #'
 #' @details By default, `binwidth` is calculated as the difference between minimum and maximum values of the variable divided by 15.
 #' @details The colors for the points are mapped to fill; if you want to rename the legend for the groups (points), use labs(fill="New name").
+#' @details See the help for stats::family for possible values for family.
 #'
 #' @return Silently returns the plot and data frames used for the plotting.
 #' @export
@@ -26,7 +27,6 @@
 #' @importFrom grDevices rgb
 #' @importFrom stats var
 #'
-#' @details See the help for stats::family for possible values for family.
 #' @note Code for extracting plot data from the ordisurf result was taken from a blog by Oliviea Rata Burge.
 #' @author Olivia Rata Burge, John Quensen
 #' @references https://oliviarata.wordpress.com/2014/07/17/ordinations-in-ggplot2-v2-ordisurf/'
@@ -63,9 +63,12 @@ gg_ordisurf <- function(ord, env.var, groups=NA, choices=c(1,2), var.label="Leve
   ylab <- axis.labels[2]
 
   # Calculate default binwidth
+  # Can change the binwidth depending on how many contours you want
   if(missing(binwidth)) {
     r <- range(env.var)
     binwidth <- (r[2]-r[1])/15
+  } else {
+    binwidth = binwidth
   }
 
   # Plotting in ggplot2
@@ -84,8 +87,6 @@ gg_ordisurf <- function(ord, env.var, groups=NA, choices=c(1,2), var.label="Leve
       labs(color=var.label) +
       coord_fixed(ratio=1)
   }
-
-  # can change the binwidth depending on how many contours you want
 
   # Plot?
   if (plot) {print(plt)}
