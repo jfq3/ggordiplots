@@ -19,7 +19,7 @@ scale_arrow(arrows, data, at = c(0, 0), fill = 0.75)
 Silently returns a data frame of scaled coordinates for adding arrows to ordination plot.
 }
 \description{
-Scales envfit arrows to fit within 75% of ordination plot dimendions.
+Scales envfit arrows to fit within 75% of ordination plot dimensions.
 }
 \author{
 Gavin Simpson

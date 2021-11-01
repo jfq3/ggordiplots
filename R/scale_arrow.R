@@ -1,6 +1,6 @@
 #' Scale Arrows to Plot
 #'
-#' Scales envfit arrows to fit within 75% of ordination plot dimendions.
+#' Scales envfit arrows to fit within 75% of ordination plot dimensions.
 #'
 #' @param arrows A two column data frame of coordinates from envfit result.
 #' @param  data A two column data frame of coordinates for ordination plot.

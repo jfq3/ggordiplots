@@ -14,9 +14,9 @@
 #' gg_ordicluster Overlays cluster diagram on ordination plot.
 #'
 #' gg_ordiplot Ordination plot with options for ellipses, hulls,
-#' and spiders distiguishing treatment groups.
+#' and spiders distinguishing treatment groups.
 #'
-#' gg_ordisurf Ordination plot with surface contours for environmental variabble.
+#' gg_ordisurf Ordination plot with surface contours for environmental variable.
 #'
 #' @docType package
 #' @name ggordiplots

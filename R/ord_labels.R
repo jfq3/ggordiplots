@@ -1,6 +1,6 @@
 #' Make Ordination Axis Labels
 #'
-#' Makes ordination axis labels that include, if apprpriate, the \% total variance explained by each axis.
+#' Makes ordination axis labels that include, if appropriate, the \% total variance explained by each axis.
 #'
 #' @param ord A vegan ordination object.
 #'
