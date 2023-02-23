@@ -37,7 +37,7 @@ ord_labels <-
         }
       }
     } else {
-      ord.labels <- colnames(vegan::scores(ord))
+      ord.labels <- colnames(vegan::scores(ord, display = "sites"))
     }
 
     return(ord.labels)
