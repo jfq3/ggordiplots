@@ -14,6 +14,15 @@
 #'
 #' @author Gavin Simpson
 #'
+#' @examples
+#' data("varespec")
+#' data("varechem")
+#' vare_dist <- vegdist(varespec)
+#' vare_mds <- monoMDS(vare_dist)
+#' plt1 <- gg_envfit(ord=vare_mds, env=varechem, plot = FALSE)
+#' mult <- scale_arrow(plt1$df_arrows, plt1$df_ord[ , c("x", "y")])
+#' mult
+#'
 scale_arrow <- function(arrows, data, at = c(0, 0), fill = 0.75) {
   u <- c(range(data[,1], range(data[,2])))
   u <- u - rep(at, each = 2)

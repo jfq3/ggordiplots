@@ -21,6 +21,16 @@ Silently returns a data frame of scaled coordinates for adding arrows to ordinat
 \description{
 Scales envfit arrows to fit within 75% of ordination plot dimensions.
 }
+\examples{
+data("varespec")
+data("varechem")
+vare_dist <- vegdist(varespec)
+vare_mds <- monoMDS(vare_dist)
+plt1 <- gg_envfit(ord=vare_mds, env=varechem, plot = FALSE)
+mult <- scale_arrow(plt1$df_arrows, plt1$df_ord[ , c("x", "y")])
+mult
+
+}
 \author{
 Gavin Simpson
 }
