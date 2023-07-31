@@ -2,9 +2,9 @@ Package: ggordiplots
 Type: Package
 Title: Make 'ggplot2' Versions of Vegan's Ordiplots
 Version: 0.4.1
-Authors@R: c(person("John", "Quensen", email = "quensenj@msu.edu", role = c("aut", "cre", "cph"), comment = c(ORCID = "0000-0002-7669-1595"),
+Authors@R: c(person("John", "Quensen", email = "quensenj@msu.edu", role = c("aut", "cre", "cph"), comment = c(ORCID = "0000-0002-7669-1595")),
            person("Gavin", "Simpson", role = "aut"),
-           person("Jari", "Oksanen", role = "aut")))
+           person("Jari", "Oksanen", role = "aut"))
 Description: The 'vegan' package includes several functions for adding
     features to ordination plots: ordiarrows, ordibubbles, ordiellipse,
     ordihull, ordispider, ordisurf. This package adds these same
