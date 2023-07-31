@@ -18,7 +18,7 @@ ordination plots made with `ggplot2`.
 The functions are written so that features from each can be combined in
 customized ordination plots.
 
-The funcitons `ord_labels()` and `scale_arrow()` (used to ensure vector
+The functions `ord_labels()` and `scale_arrow()` (used to ensure vector
 arrows fit within a plot) are exported to make it easier to generate
 custom ordination plots.
 
@@ -68,7 +68,7 @@ names(plt1)
 #> [6] "plot"
 ```
 
-The first 5 items are dataframes for making plots. The last item is a
+The first 5 items are data frames for making plots. The last item is a
 ggplot:
 
 ``` r
@@ -86,8 +86,8 @@ plt2$plot
 ```
 
 <img src="man/figures/README-unnamed-chunk-5-1.png" width="100%" /> Add
-ellipses fromt he first plot toe the second plot. The plot can be
-further customized using usual `ggplot2` methods. For example, change
+ellipses from the first plot to the second plot. The resulting plot can
+be further customized using usual `ggplot2` methods. For example, change
 the legend title.
 
 ``` r

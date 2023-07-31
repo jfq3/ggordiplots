@@ -25,7 +25,7 @@ The `vegan` package includes several functions for adding features to ordination
 
 The functions are written so that features from each can be combined in customized ordination plots.  
 
-The funcitons `ord_labels()` and `scale_arrow()` (used to ensure vector arrows fit within a plot) are exported to make it easier to generate custom ordination plots.  
+The functions `ord_labels()` and `scale_arrow()` (used to ensure vector arrows fit within a plot) are exported to make it easier to generate custom ordination plots.  
 
 ## Installation
 
@@ -57,7 +57,7 @@ plt1 <- gg_ordiplot(ord, groups = dune.env$Management, plot = FALSE)
 ```{r}
 names(plt1)
 ```
-The first 5 items are dataframes for making plots. The last item is a ggplot:  
+The first 5 items are data frames for making plots. The last item is a ggplot:  
 ```{r}
 plt1$plot
 ```
@@ -68,7 +68,7 @@ colnames(Al) <- "Al"
 plt2 <- gg_envfit(ord, env = Al, groups = dune.env$Management, plot = FALSE)
 plt2$plot
 ```
- Add ellipses fromt he first plot toe the second plot. The plot can be further customized using usual `ggplot2` methods. For example, change the legend title.  
+ Add ellipses from the first plot to the second plot. The resulting plot can be further customized using usual `ggplot2` methods. For example, change the legend title.  
 ```{r}
 plt2$plot +
   geom_path(data = plt1$df_ellipse, aes(x=x, y=y, color=Group)) +
