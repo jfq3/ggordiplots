@@ -43,7 +43,7 @@ install.packages("ggordiplots")
 
 ## Examples
 
-Plot an ordination with ellipses around treatment groups with `gg_ordiplot()`.  
+Plot an ordination with ellipses around treatment group centroids (at distances of one standard deviation) with `gg_ordiplot()`.  
 
 ```{r}
 library(ggordiplots)
@@ -68,7 +68,7 @@ colnames(Al) <- "Al"
 plt2 <- gg_envfit(ord, env = Al, groups = dune.env$Management, plot = FALSE)
 plt2$plot
 ```
- Add ellipses from the first plot to the second plot. The resulting plot can be further customized using usual `ggplot2` methods. For example, change the legend title.  
+Add ellipses from the first plot to the second plot. The resulting plot can be further customized using usual `ggplot2` methods. For example, change the legend title.  
 ```{r}
 plt2$plot +
   geom_path(data = plt1$df_ellipse, aes(x=x, y=y, color=Group)) +

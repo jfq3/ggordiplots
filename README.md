@@ -40,8 +40,8 @@ install.packages("ggordiplots")
 
 ## Examples
 
-Plot an ordination with ellipses around treatment groups with
-`gg_ordiplot()`.
+Plot an ordination with ellipses around treatment group centroids (at
+distances of one standard deviation) with `gg_ordiplot()`.
 
 ``` r
 library(ggordiplots)
