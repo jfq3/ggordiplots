@@ -32,5 +32,5 @@ mult
 
 }
 \author{
-Gavin Simpson
+Jari Oksanen with modifications by Gavin Simpson and John Quensen
 }
