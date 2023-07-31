@@ -10,7 +10,12 @@
 #'
 #' @export
 #' @examples
-#'
+#' data("dune")
+#' data("dune.env")
+#' dune_hel <- decostand(dune, method = "hellinger")
+#' ord <- rda(dune_hel)
+#' axis_labels <- ord_labels(ord)
+#' axis_labels[c(1,2)]
 #'
 ord_labels <-
   function(ord){
