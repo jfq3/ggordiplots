@@ -45,10 +45,18 @@ Plot an ordination with ellipses around treatment groups with
 
 ``` r
 library(ggordiplots)
+#> Loading required package: ggplot2
+#> Loading required package: vegan
+#> Loading required package: permute
+#> Loading required package: lattice
+#> This is vegan 2.6-4
+#> Loading required package: glue
 data("dune")
 data("dune.env")
 dune_bray <- vegdist(dune, method = "bray")
 ord <- cmdscale(dune_bray, k = (nrow(dune) - 1), eig = TRUE, add = TRUE)
+#> Warning in cmdscale(dune_bray, k = (nrow(dune) - 1), eig = TRUE, add = TRUE):
+#> only 18 of the first 19 eigenvalues are > 0
 plt1 <- gg_ordiplot(ord, groups = dune.env$Management, plot = FALSE)
 ```
 
@@ -56,6 +64,8 @@ plt1 <- gg_ordiplot(ord, groups = dune.env$Management, plot = FALSE)
 
 ``` r
 names(plt1)
+#> [1] "df_ord"      "df_mean.ord" "df_ellipse"  "df_hull"     "df_spiders" 
+#> [6] "plot"
 ```
 
 The first 5 items are dataframes for making plots. The last item is a
@@ -65,7 +75,8 @@ ggplot:
 plt1$plot
 ```
 
-Fit a vector of Al concentrations to the ordination with `gg_envfit()`.
+<img src="man/figures/README-unnamed-chunk-4-1.png" width="100%" /> Fit
+a vector of Al concentrations to the ordination with `gg_envfit()`.
 
 ``` r
 Al <- as.data.frame(dune.env$A1)
@@ -74,7 +85,8 @@ plt2 <- gg_envfit(ord, env = Al, groups = dune.env$Management, plot = FALSE)
 plt2$plot
 ```
 
-Add ellipses fromt he first plot toe the second plot. The plot can be
+<img src="man/figures/README-unnamed-chunk-5-1.png" width="100%" /> Add
+ellipses fromt he first plot toe the second plot. The plot can be
 further customized using usual `ggplot2` methods. For example, change
 the legend title.
 
@@ -82,5 +94,6 @@ the legend title.
 plt2$plot +
   geom_path(data = plt1$df_ellipse, aes(x=x, y=y, color=Group)) +
   guides(color=guide_legend(title="Management")) # Change legend title
-  
 ```
+
+<img src="man/figures/README-unnamed-chunk-6-1.png" width="100%" />

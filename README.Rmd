@@ -45,7 +45,7 @@ install.packages("ggordiplots")
 
 Plot an ordination with ellipses around treatment groups with `gg_ordiplot()`.  
 
-``` r
+```{r}
 library(ggordiplots)
 data("dune")
 data("dune.env")
@@ -54,22 +54,22 @@ ord <- cmdscale(dune_bray, k = (nrow(dune) - 1), eig = TRUE, add = TRUE)
 plt1 <- gg_ordiplot(ord, groups = dune.env$Management, plot = FALSE)
 ```
 `plt1` is list with items named:
-``` r
+```{r}
 names(plt1)
 ```
 The first 5 items are dataframes for making plots. The last item is a ggplot:  
-``` r
+```{r}
 plt1$plot
 ```
 Fit a vector of Al concentrations to the ordination with `gg_envfit()`.  
-``` r
+```{r}
 Al <- as.data.frame(dune.env$A1)
 colnames(Al) <- "Al"
 plt2 <- gg_envfit(ord, env = Al, groups = dune.env$Management, plot = FALSE)
 plt2$plot
 ```
  Add ellipses fromt he first plot toe the second plot. The plot can be further customized using usual `ggplot2` methods. For example, change the legend title.  
-```r
+```{r}
 plt2$plot +
   geom_path(data = plt1$df_ellipse, aes(x=x, y=y, color=Group)) +
   guides(color=guide_legend(title="Management")) # Change legend title
