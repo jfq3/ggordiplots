@@ -18,8 +18,7 @@
 #' @param pt.size Symbol size.
 #' @param plot A logical for plotting; defaults to TRUE.
 #'
-#' @return
-#' Silently returns the plot and data frames used for the plotting.
+#' @return Silently returns the plot and data frames used for the plotting.
 #' @export
 #' @import ggplot2
 #' @import vegan
