@@ -31,7 +31,7 @@
 #' gg_ordicluster(ord, cluster=cl, treatments=dune.env$Management, prune=3, col=cutree(cl, 4))
 #'
 gg_ordicluster <- function (ord, cluster, treatments=NA, choices=c(1,2), prune = 0, col = 1, pt.size = 3, plot=TRUE)
-{
+{ x <- y <- xend <- yend <- Treatment <- cntr.x <- cntr.y <- NULL
   if (is.numeric(treatments)) {
     stop("'treatments' cannot be numeric")
   }

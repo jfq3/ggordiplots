@@ -39,7 +39,7 @@
 
 gg_ordisurf <- function(ord, env.var, groups=NA, choices=c(1,2), var.label="Level",
                         binwidth, pt.size=3, family = "gaussian", plot=TRUE) {
-
+  x <- y <- z <- Group <- ..level.. <- NULL
   groups <- as.factor(groups)
 
   # Extract ordisurf data for plotting

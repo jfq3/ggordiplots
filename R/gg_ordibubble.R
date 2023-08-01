@@ -24,6 +24,7 @@
 #' gg_ordibubble(ord, env.var=dune.env$A1, var.label="A1")
 #'
 gg_ordibubble <- function(ord, env.var, groups=NA, var.label="Level", choices=c(1,2), plot=TRUE) {
+  x <- y <- Group <- NULL
   df_ord <- as.data.frame(vegan::scores(ord, display="sites", choices=choices))
 
   axis.labels <- ord_labels(ord)[choices]

@@ -43,6 +43,7 @@
 #' gg_envfit(dune.mds, env=A1, groups=dune.env$Management)
 #'
 gg_envfit <- function(ord, env, groups=NA, scaling = 1, choices=c(1,2), perm = 999, alpha = 0.05, angle=20, len=0.5, unit="cm", arrow.col="red", pt.size=3, plot=TRUE) {
+  x <- y <- Group <- NULL
   df_ord <- vegan::scores(ord, display = "sites", choices = choices, scaling = scaling)
   df_ord <- as.data.frame(df_ord)
   axis.labels <- ord_labels(ord)[choices]
