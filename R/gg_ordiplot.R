@@ -58,7 +58,7 @@ gg_ordiplot <- function(ord, groups, scaling = 1, choices = c(1,2), kind = c("sd
   df_ellipse <- data.frame()
   for(g in show.groups) {
     df_ellipse <- rbind(df_ellipse, cbind(as.data.frame(with(df_ord[df_ord$Group==g,],
-    vegan:::veganCovEllipse(rslt[[g]]$cov,rslt[[g]]$center, rslt[[g]]$scale))),Group=g))
+    veganCovEllipse(rslt[[g]]$cov,rslt[[g]]$center, rslt[[g]]$scale))),Group=g))
   }
   colnames(df_ellipse) <- c("x", "y", "Group")
   df_ellipse <- df_ellipse[ , c(3,1,2)]
