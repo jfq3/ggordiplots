@@ -11,7 +11,7 @@
 #'
 #' @import vegan
 #' @import ggplot2
-#'
+#' @export
 #' @author Jari Oksanen with modifications by Gavin Simpson and John Quensen
 #'
 #' @examples
