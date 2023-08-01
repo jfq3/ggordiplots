@@ -6,6 +6,7 @@
 #' @param center Coordinates for center of ellipse
 #' @param scale Scaling factor for ellipse
 #' @param npoints Number of points to generate
+#' @keywords internal
 #' @return A dataframe for plotting ellipses around each group centroid.
 #' @author Jari Oksanen
 #' @noRd
