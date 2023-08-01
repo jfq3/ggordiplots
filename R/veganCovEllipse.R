@@ -2,12 +2,13 @@
 #'
 #' Generates points for ellipse around treatment centroids
 #'
-#' @param cov Covariance extracted from ordination with vegan's ordiellipse function
+#' @param cov Estimated (weighted) covariance matrix extracted from ordination with vegan's ordiellipse function
 #' @param center Coordinates for center of ellipse
-#' @param scale Ellipse dimension in standard deviations
+#' @param scale Scaling factor for ellipse
 #' @param npoints Number of points to generate
 #' @return A dataframe for plotting ellipses around each group centroid.
 #' @author Jari Oksanen
+#' @noRd
 
 veganCovEllipse <-
   function(cov, center = c(0,0), scale = 1, npoints = 100)
