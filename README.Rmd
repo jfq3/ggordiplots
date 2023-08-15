@@ -17,11 +17,10 @@ knitr::opts_chunk$set(
 
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/jfq3/ggordiplots/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/jfq3/ggordiplots/actions/workflows/R-CMD-check.yaml)
-[![Github All Releases](https://img.shields.io/github/downloads/jfq3/ggordiplots/total.svg)]()
+[![Github All Releases](https://img.shields.io/github/downloads/jfq3/ggordiplots/total.svg)])
 <!-- badges: end -->
 
-
-The `vegan` package includes several functions for adding features to ordination plots: ordiarrows, ordibubbles, ordiellipse, ordihull, ordispider, ordisurf. This package adds these same features to ordination plots made with `ggplot2`.  
+The `vegan` package includes several functions for adding features to ordination plots: `ordiarrows()`,  `ordiellipse()`, `ordihull()`, `ordispider()` and `ordisurf()`. This package adds these same features to ordination plots made with `ggplot2`. In addition, `gg_ordibubble()` sizes points relative to the value of an environmental variable.
 
 The functions are written so that features from each can be combined in customized ordination plots.  
 
