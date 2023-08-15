@@ -5,7 +5,6 @@ Version: 0.4.2
 Authors@R: c(person("John", "Quensen", email = "quensenj@msu.edu", role = c("aut", "cre", "cph"), comment = c(ORCID = "0000-0002-7669-1595")),
            person("Gavin", "Simpson", role = "aut"),
            person("Jari", "Oksanen", role = "aut"))
-Author: John Quensen
 Maintainer: John Quensen <quensenj@msu.edu>
 Description: The 'vegan' package includes several functions for adding
     features to ordination plots: ordiarrows, ordibubbles, ordiellipse,
