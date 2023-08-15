@@ -6,10 +6,11 @@ Authors@R: c(person("John", "Quensen", email = "quensenj@msu.edu", role = c("aut
            person("Gavin", "Simpson", role = "aut"),
            person("Jari", "Oksanen", role = "aut"))
 Maintainer: John Quensen <quensenj@msu.edu>
-Description: The 'vegan' package includes several functions for adding
-    features to ordination plots: ordiarrows, ordibubbles, ordiellipse,
-    ordihull, ordispider, ordisurf. This package adds these same
-    features to ordination plots made with 'ggplot2'.
+Description: The `vegan` package includes several functions for adding features
+  to ordination plots with the functions `ordiarrows()`,  `ordiellipse()`,
+  `ordihull()`, `ordispider()`and `ordisurf()`. This package adds these same
+  features to ordination plots made with `ggplot2`. In addition, `gg_ordibubble()`
+  sizes points relative to the value of an environmental variable.
 License: GPL (>= 2)
 Encoding: UTF-8
 LazyData: true
@@ -23,6 +24,6 @@ Suggests: formatR,
   knitr,
   rmarkdown
 VignetteBuilder: knitr
-URL: http://github.com/jfq3/ggordiplots, https://github.com/jfq3/ggordiplots
+URL: https://github.com/jfq3/ggordiplots
 BugReports: https://github.com/jfq3/ggordiplots/issues
 RoxygenNote: 7.2.3
