@@ -20,5 +20,5 @@
 #'
 #' @docType package
 #' @name ggordiplots
-#'
+#' @aliases ggordiplots-package
 NULL
