@@ -7,3 +7,4 @@
 
 # ggordiplots 0.4.1
 
+* Latest version prior to CRAN submission
