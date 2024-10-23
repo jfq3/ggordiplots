@@ -18,7 +18,7 @@
 #'
 #' gg_ordisurf Ordination plot with surface contours for environmental variable.
 #'
-#' @docType package
+#' @docType "_PACKAGE"
 #' @name ggordiplots
 #'
 NULL
