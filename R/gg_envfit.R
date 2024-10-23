@@ -15,6 +15,7 @@
 #' @param unit Unit for length ("cm", "in")
 #' @param arrow.col Arrow color.
 #' @param pt.size Symbol size.
+#' @param show_factors A logical for including factors in env on the plot. The default is FALSE.
 #' @param plot A logical for plotting; defaults to TRUE.
 #'
 #' @note In order for the arrow tips to be labeled with the names of the variables, they must be supplied as a matrix or data frame. If a single variable is supplied as a vector, the arrow tip will be labeled with "1". A way-around is to convert the vector to a data frame with the column named for the variable.
@@ -42,19 +43,39 @@
 #' colnames(A1) <- "A1"
 #' gg_envfit(dune.mds, env=A1, groups=dune.env$Management)
 #'
-gg_envfit <- function(ord, env, groups=NA, scaling = 1, choices=c(1,2), perm = 999, alpha = 0.05, angle=20, len=0.5, unit="cm", arrow.col="red", pt.size=3, plot=TRUE) {
+
+gg_envfit <- function(ord, env, groups=NA, scaling = 1, choices=c(1,2),
+                      perm = 999, alpha = 0.05, angle=20, len=0.5,
+                      unit="cm", arrow.col="red", pt.size=3,
+                      show_factors=FALSE, plot=TRUE) {
   x <- y <- Group <- NULL
+  # Make data frame for plotting ordination points
   df_ord <- vegan::scores(ord, display = "sites", choices = choices, scaling = scaling)
   df_ord <- as.data.frame(df_ord)
   axis.labels <- ord_labels(ord)[choices]
   if (is.na(groups[1])) {
     colnames(df_ord) <- c("x", "y")
-  } else{
+  } else {
     df_ord$Group <- groups
     df_ord <- df_ord[ , c(3,1,2)]
     colnames(df_ord) <- c("Group", "x", "y")
   }
+  # Fit environmental variables to the ordination as the object fit
   fit <- vegan::envfit(ord, env, choices = choices, perm = perm)
+
+  # If there are factor or character vectors in env, make a dataframe
+  # for adding their labels to the plot.
+  df_factors <- scores(fit, "factors")
+  if (!(is.null(df_factors))) {
+    df_factors <- as.data.frame(df_factors)
+    df_factors$labels <- rownames(df_factors)
+    colnames(df_factors) <- c("x", "y", "labels")
+  } else {
+    df_factors <- NULL
+   }
+
+  # If numeric values for the fit are not significant, abort.
+  # Else create dataframe for plotting arrows.
   if (min(fit$vectors$pvals) > alpha) {
     print(paste("No variable significant at alpha <=", as.character(alpha), sep = " "))
   } else {
@@ -69,6 +90,7 @@ gg_envfit <- function(ord, env, groups=NA, scaling = 1, choices=c(1,2), perm = 9
     xlab <- axis.labels[1]
     ylab <- axis.labels[2]
 
+    # Make base ordination plot
     if (is.na(groups[1])) {
       plt <- ggplot(data=df_ord, aes(x=x, y=y)) + geom_point(size=pt.size) +
         xlab(xlab) + ylab(ylab)
@@ -77,10 +99,19 @@ gg_envfit <- function(ord, env, groups=NA, scaling = 1, choices=c(1,2), perm = 9
         xlab(xlab) + ylab(ylab)
     }
 
+    # Add arrows to the base ordination plot.
     plt <- plt +
       geom_segment(data=df_arrows, aes(x=0, xend=x, y=0, yend=y),
                    arrow=arrow(angle=angle, length=unit(len, unit)), color=arrow.col) +
       geom_text(data=df_arrows, aes(x=x, y=y, label=var), color=arrow.col, hjust="outward")
+
+    # If df_factors is not null and show_factors is TRUE,
+    # add factor labels to the plot.
+    if ((!(is.null(df_factors))) && show_factors == TRUE) {
+      plt <- plt +
+        geom_text(data=df_factors, aes(x=x, y=y, label=labels),
+                  inherit.aes = FALSE)
+    }
 
     plt <- plt + coord_fixed(ratio=1)
 
@@ -88,7 +119,8 @@ gg_envfit <- function(ord, env, groups=NA, scaling = 1, choices=c(1,2), perm = 9
     if (plot) {print(plt)}
 
     # Return data frames, plot as a list.
-    invisible(list(df_ord=df_ord, df_arrows=df_arrows, plot=plt))
+    invisible(list(df_ord=df_ord, df_arrows=df_arrows,
+                   df_factors=df_factors, plot=plt))
   }
 
 }
