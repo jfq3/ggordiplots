@@ -17,6 +17,7 @@ gg_envfit(
   unit = "cm",
   arrow.col = "red",
   pt.size = 3,
+  show_factors = FALSE,
   plot = TRUE
 )
 }
@@ -44,6 +45,8 @@ gg_envfit(
 \item{arrow.col}{Arrow color.}
 
 \item{pt.size}{Symbol size.}
+
+\item{show_factors}{A logical for including factors in env on the plot. The default is FALSE.}
 
 \item{plot}{A logical for plotting; defaults to TRUE.}
 }
