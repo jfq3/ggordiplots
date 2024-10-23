@@ -46,7 +46,7 @@ gg_envfit(
 
 \item{pt.size}{Symbol size.}
 
-\item{show_factors}{A logical for including factors in env on the plot. The default is FALSE.}
+\item{show_factors}{A logical for including factors on the plot; defaults to FALSE.}
 
 \item{plot}{A logical for plotting; defaults to TRUE.}
 }
@@ -55,7 +55,16 @@ Silently returns the plot and data frames used for the plotting if the fit of an
 }
 \description{
 Fits environmental parameters to an ordination plot of sites
-and plots them as arrows.
+and plots them as arrows or centroid labels.
+}
+\details{
+Vegan's envfit function fits environmental variables to an ordination.
+If the variable is numeric, an arrow is fitted to the ordination plot
+indicating the direction in which that variable increases.
+If the variable is a factor (or character vector), vegan's envfit plotting
+function treats levels of the factor as groups and adds labels for
+the factor's level to the ordination plot at each group's centroid center.
+This behavior is now enabled in gg_envfit() if show_factors is set to TRUE.
 }
 \note{
 In order for the arrow tips to be labeled with the names of the variables, they must be supplied as a matrix or data frame. If a single variable is supplied as a vector, the arrow tip will be labeled with "1". A way-around is to convert the vector to a data frame with the column named for the variable.

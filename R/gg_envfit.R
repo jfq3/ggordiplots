@@ -1,7 +1,7 @@
 #' Vegan envfit plot
 #'
 #' Fits environmental parameters to an ordination plot of sites
-#' and plots them as arrows.
+#' and plots them as arrows or centroid labels.
 #'
 #' @param ord An ordination object.
 #' @param env A data frame of environmental parameters.
@@ -15,8 +15,16 @@
 #' @param unit Unit for length ("cm", "in")
 #' @param arrow.col Arrow color.
 #' @param pt.size Symbol size.
-#' @param show_factors A logical for including factors in env on the plot. The default is FALSE.
+#' @param show_factors A logical for including factors on the plot; defaults to FALSE.
 #' @param plot A logical for plotting; defaults to TRUE.
+#' @details
+#' Vegan's envfit function fits environmental variables to an ordination.
+#' If the variable is numeric, an arrow is fitted to the ordination plot
+#' indicating the direction in which that variable increases.
+#' If the variable is a factor (or character vector), vegan's envfit plotting
+#' function treats levels of the factor as groups and adds labels for
+#' the factor's level to the ordination plot at each group's centroid center.
+#' This behavior is now enabled in gg_envfit() if show_factors is set to TRUE.
 #'
 #' @note In order for the arrow tips to be labeled with the names of the variables, they must be supplied as a matrix or data frame. If a single variable is supplied as a vector, the arrow tip will be labeled with "1". A way-around is to convert the vector to a data frame with the column named for the variable.
 #'
@@ -75,7 +83,7 @@ gg_envfit <- function(ord, env, groups=NA, scaling = 1, choices=c(1,2),
    }
 
   # If numeric values for the fit are not significant, abort.
-  # Else create dataframe for plotting arrows.
+  # Else create a dataframe for plotting arrows.
   if (min(fit$vectors$pvals) > alpha) {
     print(paste("No variable significant at alpha <=", as.character(alpha), sep = " "))
   } else {
